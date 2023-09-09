@@ -55,8 +55,8 @@ def train_step(model, dataset, optimizer, scheduler, scaler, amp=False):
     model.train()
 
     with autocast(enabled=amp):
-        logits = model(graph=dataset.graph, x=dataset.node_features)
-        loss = dataset.loss_fn(input=logits[dataset.train_idx], target=dataset.labels[dataset.train_idx])
+        preds = model(graph=dataset.graph, x=dataset.features)
+        loss = dataset.loss_fn(input=preds[dataset.train_idx], target=dataset.targets[dataset.train_idx])
 
     scaler.scale(loss).backward()
     scaler.step(optimizer)
@@ -70,9 +70,9 @@ def evaluate(model, dataset, amp=False):
     model.eval()
 
     with autocast(enabled=amp):
-        logits = model(graph=dataset.graph, x=dataset.node_features)
+        preds = model(graph=dataset.graph, x=dataset.features)
 
-    metrics = dataset.compute_metrics(logits)
+    metrics = dataset.compute_metrics(preds)
 
     return metrics
 
@@ -91,7 +91,7 @@ def main():
     for run in range(1, args.num_runs + 1):
         model = Model(model_name=args.model,
                       num_layers=args.num_layers,
-                      input_dim=dataset.num_node_features,
+                      input_dim=dataset.num_features,
                       hidden_dim=args.hidden_dim,
                       output_dim=dataset.num_targets,
                       hidden_dim_multiplier=args.hidden_dim_multiplier,
