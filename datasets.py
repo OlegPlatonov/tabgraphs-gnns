@@ -4,12 +4,24 @@ import pandas as pd
 import torch
 from torch.nn import functional as F
 import dgl
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import (StandardScaler, MinMaxScaler, RobustScaler, PowerTransformer, QuantileTransformer,
+                                   OneHotEncoder)
 from sklearn.metrics import roc_auc_score
 
 
 class Dataset:
-    def __init__(self, name, add_self_loops=False, device='cpu'):
+    num_features_transforms = {
+        'standard-scaler': StandardScaler(),
+        'min-max-scaler': MinMaxScaler(),
+        'robust-scaler': RobustScaler(unit_variance=True),
+        'power-transform-yeo-johnson': PowerTransformer(method='yeo-johnson', standardize=True),
+        'quantile-transform-normal': QuantileTransformer(output_distribution='normal', subsample=1_000_000,
+                                                         random_state=0),
+        'quantile-transform-uniform': QuantileTransformer(output_distribution='uniform', subsample=1_000_000,
+                                                          random_state=0)
+    }
+
+    def __init__(self, name, add_self_loops=False, num_features_transform='standard-scaler', device='cpu'):
         print('Preparing data...')
         with open(f'data/{name}/info.yaml', 'r') as file:
             info = yaml.safe_load(file)
@@ -20,6 +32,7 @@ class Dataset:
         cat_features = features_df[info['cat_feature_names']].values
         targets = features_df[info['target_name']].values
 
+        num_features = self.num_features_transforms[num_features_transform].fit_transform(num_features)
         cat_features = OneHotEncoder(sparse_output=False).fit_transform(cat_features)
 
         if info['task'] == 'classification':

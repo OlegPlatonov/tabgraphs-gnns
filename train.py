@@ -18,6 +18,11 @@ def get_args():
                         choices=['vk-users', 'hm-products', 'avazu-devices', 'amazon-users', 'tolokers-tab',
                                  'questions-tab'])
 
+    # numerical features preprocessing
+    parser.add_argument('--numerical_features_transform', type=str, default='standard',
+                        choices=['standard-scaler', 'min-max-scaler', 'robust-scaler', 'power-transform-yeo-johnson',
+                                 'quantile-transform-normal', 'quantile-transform-uniform'])
+
     # model architecture
     parser.add_argument('--model', type=str, default='GT-sep',
                         choices=['ResNet', 'GCN', 'SAGE', 'GAT', 'GAT-sep', 'GT', 'GT-sep'])
@@ -84,6 +89,7 @@ def main():
 
     dataset = Dataset(name=args.dataset,
                       add_self_loops=(args.model in ['GCN', 'GAT', 'GT']),
+                      num_features_transform=args.numerical_features_transform,
                       device=args.device)
 
     logger = Logger(args, metric=dataset.metric)
