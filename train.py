@@ -113,7 +113,7 @@ def main():
         scheduler = get_lr_scheduler_with_warmup(optimizer=optimizer, num_warmup_steps=args.num_warmup_steps,
                                                  num_steps=args.num_steps, warmup_proportion=args.warmup_proportion)
 
-        logger.start_run(run=run, data_split=dataset.cur_data_split + 1)
+        logger.start_run(run=run)
         with tqdm(total=args.num_steps, desc=f'Run {run}', disable=args.verbose) as progress_bar:
             for step in range(1, args.num_steps + 1):
                 train_step(model=model, dataset=dataset, optimizer=optimizer, scheduler=scheduler,
