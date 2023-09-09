@@ -4,7 +4,6 @@ import pandas as pd
 import torch
 from torch.nn import functional as F
 import dgl
-from dgl import ops
 from sklearn.metrics import roc_auc_score
 
 
@@ -115,17 +114,3 @@ class Dataset:
         }
 
         return metrics
-
-    @staticmethod
-    def compute_sgc_features(graph, node_features, num_props=5):
-        graph = dgl.remove_self_loop(graph)
-        graph = dgl.add_self_loop(graph)
-
-        degrees = graph.out_degrees().float()
-        degree_edge_products = ops.u_mul_v(graph, degrees, degrees)
-        norm_coefs = 1 / degree_edge_products ** 0.5
-
-        for _ in range(num_props):
-            node_features = ops.u_mul_e_sum(graph, node_features, norm_coefs)
-
-        return node_features
