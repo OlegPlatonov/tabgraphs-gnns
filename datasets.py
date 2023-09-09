@@ -4,6 +4,7 @@ import pandas as pd
 import torch
 from torch.nn import functional as F
 import dgl
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import roc_auc_score
 
 
@@ -18,6 +19,8 @@ class Dataset:
         bin_features = features_df[info['bin_feature_names']].values
         cat_features = features_df[info['cat_feature_names']].values
         targets = features_df[info['target_name']].values
+
+        cat_features = OneHotEncoder(sparse_output=False).fit_transform(cat_features)
 
         if info['task'] == 'classification':
             num_classes = len(targets.unique())
