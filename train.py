@@ -86,7 +86,7 @@ def main():
                       add_self_loops=(args.model in ['GCN', 'GAT', 'GT']),
                       device=args.device)
 
-    logger = Logger(args, metric=dataset.metric, num_data_splits=dataset.num_data_splits)
+    logger = Logger(args, metric=dataset.metric)
 
     for run in range(1, args.num_runs + 1):
         model = Model(model_name=args.model,
@@ -120,7 +120,6 @@ def main():
 
         logger.finish_run()
         model.cpu()
-        dataset.next_data_split()
 
     logger.print_metrics_summary()
 

@@ -43,32 +43,15 @@ class Dataset:
         self.node_features = node_features.to(device)
         self.labels = labels.to(device)
 
-        self.train_idx_list = [train_idx.to(device) for train_idx in train_idx_list]
-        self.val_idx_list = [val_idx.to(device) for val_idx in val_idx_list]
-        self.test_idx_list = [test_idx.to(device) for test_idx in test_idx_list]
-        self.num_data_splits = len(train_idx_list)
-        self.cur_data_split = 0
+        self.train_idx_list = train_idx.to(device)
+        self.val_idx_list = val_idx.to(device)
+        self.test_idx_list = test_idx.to(device)
 
         self.num_node_features = node_features.shape[1]
         self.num_targets = num_targets
 
         self.loss_fn = F.binary_cross_entropy_with_logits if num_targets == 1 else F.cross_entropy
         self.metric = 'ROC AUC' if num_targets == 1 else 'accuracy'
-
-    @property
-    def train_idx(self):
-        return self.train_idx_list[self.cur_data_split]
-
-    @property
-    def val_idx(self):
-        return self.val_idx_list[self.cur_data_split]
-
-    @property
-    def test_idx(self):
-        return self.test_idx_list[self.cur_data_split]
-
-    def next_data_split(self):
-        self.cur_data_split = (self.cur_data_split + 1) % self.num_data_splits
 
     def compute_metrics(self, logits):
         if self.num_targets == 1:
