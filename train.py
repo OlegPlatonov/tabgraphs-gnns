@@ -14,11 +14,9 @@ def get_args():
 
     parser.add_argument('--name', type=str, default=None, help='Experiment name. If None, model name is used.')
     parser.add_argument('--save_dir', type=str, default='experiments', help='Base directory for saving information.')
-    parser.add_argument('--dataset', type=str, default='roman-empire',
-                        choices=['roman-empire', 'amazon-ratings', 'minesweeper', 'tolokers', 'questions',
-                                 'squirrel', 'squirrel-directed', 'squirrel-filtered', 'squirrel-filtered-directed',
-                                 'chameleon', 'chameleon-directed', 'chameleon-filtered', 'chameleon-filtered-directed',
-                                 'actor', 'texas', 'texas-4-classes', 'cornell', 'wisconsin'])
+    parser.add_argument('--dataset', type=str, default='vk-users',
+                        choices=['vk-users', 'hm-products', 'avazu-devices', 'amazon-users', 'tolokers-tab',
+                                 'questions-tab'])
 
     # model architecture
     parser.add_argument('--model', type=str, default='GT-sep',
