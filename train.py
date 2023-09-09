@@ -38,12 +38,6 @@ def get_args():
                         help='If None, warmup_proportion is used instead.')
     parser.add_argument('--warmup_proportion', type=float, default=0, help='Only used if num_warmup_steps is None.')
 
-    # node feature augmentation
-    parser.add_argument('--use_sgc_features', default=False, action='store_true')
-    parser.add_argument('--use_identity_features', default=False, action='store_true')
-    parser.add_argument('--use_adjacency_features', default=False, action='store_true')
-    parser.add_argument('--do_not_use_original_features', default=False, action='store_true')
-
     parser.add_argument('--num_runs', type=int, default=10)
     parser.add_argument('--device', type=str, default='cuda:0')
     parser.add_argument('--amp', default=False, action='store_true')
@@ -90,11 +84,7 @@ def main():
 
     dataset = Dataset(name=args.dataset,
                       add_self_loops=(args.model in ['GCN', 'GAT', 'GT']),
-                      device=args.device,
-                      use_sgc_features=args.use_sgc_features,
-                      use_identity_features=args.use_identity_features,
-                      use_adjacency_features=args.use_adjacency_features,
-                      do_not_use_original_features=args.do_not_use_original_features)
+                      device=args.device)
 
     logger = Logger(args, metric=dataset.metric, num_data_splits=dataset.num_data_splits)
 

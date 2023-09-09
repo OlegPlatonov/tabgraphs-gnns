@@ -8,13 +8,7 @@ from sklearn.metrics import roc_auc_score
 
 
 class Dataset:
-    def __init__(self, name, add_self_loops=False, device='cpu', use_sgc_features=False, use_identity_features=False,
-                 use_adjacency_features=False, do_not_use_original_features=False):
-
-        if do_not_use_original_features and not any([use_sgc_features, use_identity_features, use_adjacency_features]):
-            raise ValueError('If original node features are not used, at least one of the arguments '
-                             'use_sgc_features, use_identity_features, use_adjacency_features should be used.')
-
+    def __init__(self, name, add_self_loops=False, device='cpu'):
         print('Preparing data...')
         data = np.load(os.path.join('data', f'{name.replace("-", "_")}.npz'))
         node_features = torch.tensor(data['node_features'])
@@ -41,13 +35,6 @@ class Dataset:
         train_idx_list = [torch.where(train_mask)[0] for train_mask in train_masks]
         val_idx_list = [torch.where(val_mask)[0] for val_mask in val_masks]
         test_idx_list = [torch.where(test_mask)[0] for test_mask in test_masks]
-
-        node_features = self.augment_node_features(graph=graph,
-                                                   node_features=node_features,
-                                                   use_sgc_features=use_sgc_features,
-                                                   use_identity_features=use_identity_features,
-                                                   use_adjacency_features=use_adjacency_features,
-                                                   do_not_use_original_features=do_not_use_original_features)
 
         self.name = name
         self.device = device
@@ -107,30 +94,6 @@ class Dataset:
         }
 
         return metrics
-
-    @staticmethod
-    def augment_node_features(graph, node_features, use_sgc_features, use_identity_features, use_adjacency_features,
-                              do_not_use_original_features):
-
-        n = graph.num_nodes()
-        original_node_features = node_features
-
-        if do_not_use_original_features:
-            node_features = torch.tensor([[] for _ in range(n)])
-
-        if use_sgc_features:
-            sgc_features = Dataset.compute_sgc_features(graph, original_node_features)
-            node_features = torch.cat([node_features, sgc_features], axis=1)
-
-        if use_identity_features:
-            node_features = torch.cat([node_features, torch.eye(n)], axis=1)
-
-        if use_adjacency_features:
-            graph_without_self_loops = dgl.remove_self_loop(graph)
-            adj_matrix = graph_without_self_loops.adjacency_matrix().to_dense()
-            node_features = torch.cat([node_features, adj_matrix], axis=1)
-
-        return node_features
 
     @staticmethod
     def compute_sgc_features(graph, node_features, num_props=5):
