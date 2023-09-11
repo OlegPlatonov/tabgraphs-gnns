@@ -4,13 +4,14 @@ import pandas as pd
 import torch
 from torch.nn import functional as F
 import dgl
-from sklearn.preprocessing import (StandardScaler, MinMaxScaler, RobustScaler, PowerTransformer, QuantileTransformer,
-                                   OneHotEncoder)
+from sklearn.preprocessing import (FunctionTransformer, StandardScaler, MinMaxScaler, RobustScaler, PowerTransformer,
+                                   QuantileTransformer, OneHotEncoder)
 from sklearn.metrics import roc_auc_score
 
 
 class Dataset:
     num_features_transforms = {
+        'none': FunctionTransformer(lambda x: x),
         'standard-scaler': StandardScaler(),
         'min-max-scaler': MinMaxScaler(),
         'robust-scaler': RobustScaler(unit_variance=True),

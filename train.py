@@ -19,17 +19,18 @@ def get_args():
                                  'questions-tab'])
 
     # numerical features preprocessing
-    parser.add_argument('--numerical_features_transform', type=str, default='standard',
-                        choices=['standard-scaler', 'min-max-scaler', 'robust-scaler', 'power-transform-yeo-johnson',
-                                 'quantile-transform-normal', 'quantile-transform-uniform'])
+    parser.add_argument('--numerical_features_transform', type=str, default='none',
+                        choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
+                                 'power-transform-yeo-johnson', 'quantile-transform-normal',
+                                 'quantile-transform-uniform'])
 
     # model architecture
     parser.add_argument('--model', type=str, default='GT-sep',
                         choices=['ResNet', 'GCN', 'SAGE', 'GAT', 'GAT-sep', 'GT', 'GT-sep'])
-    parser.add_argument('--num_layers', type=int, default=5)
+    parser.add_argument('--num_layers', type=int, default=3)
     parser.add_argument('--hidden_dim', type=int, default=512)
     parser.add_argument('--hidden_dim_multiplier', type=float, default=1)
-    parser.add_argument('--num_heads', type=int, default=8)
+    parser.add_argument('--num_heads', type=int, default=4)
     parser.add_argument('--normalization', type=str, default='LayerNorm', choices=['None', 'LayerNorm', 'BatchNorm'])
 
     # regularization
@@ -43,7 +44,7 @@ def get_args():
                         help='If None, warmup_proportion is used instead.')
     parser.add_argument('--warmup_proportion', type=float, default=0, help='Only used if num_warmup_steps is None.')
 
-    parser.add_argument('--num_runs', type=int, default=10)
+    parser.add_argument('--num_runs', type=int, default=5)
     parser.add_argument('--device', type=str, default='cuda:0')
     parser.add_argument('--amp', default=False, action='store_true')
     parser.add_argument('--verbose', default=False, action='store_true')
