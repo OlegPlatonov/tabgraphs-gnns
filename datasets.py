@@ -33,8 +33,11 @@ class Dataset:
         cat_features = features_df[info['cat_feature_names']].values.astype(np.float32)
         targets = features_df[info['target_name']].values.astype(np.float32)
 
-        num_features = self.num_features_transforms[num_features_transform].fit_transform(num_features)
-        cat_features = OneHotEncoder(sparse_output=False, dtype=np.float32).fit_transform(cat_features)
+        if num_features.shape[1] > 0:
+            num_features = self.num_features_transforms[num_features_transform].fit_transform(num_features)
+
+        if cat_features.shape[1] > 0:
+            cat_features = OneHotEncoder(sparse_output=False, dtype=np.float32).fit_transform(cat_features)
 
         if info['task'] == 'classification':
             num_classes = len(np.unique(targets))
