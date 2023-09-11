@@ -37,7 +37,7 @@ class Dataset:
         cat_features = OneHotEncoder(sparse_output=False).fit_transform(cat_features)
 
         if info['task'] == 'classification':
-            num_classes = len(targets.unique())
+            num_classes = len(np.unique(targets))
             num_targets = 1 if num_classes == 2 else num_classes
         else:
             num_targets = 1
