@@ -51,9 +51,9 @@ class Dataset:
         train_mask_df = pd.read_csv(f'data/{name}/train_mask.csv', index_col=0)
         train_mask = train_mask_df.values.reshape(-1)
         train_idx = np.where(train_mask)[0]
-        valid_mask_df = pd.read_csv(f'data/{name}/valid_mask.csv', index_col=0)
-        valid_mask = valid_mask_df.values.reshape(-1)
-        valid_idx = np.where(valid_mask)[0]
+        val_mask_df = pd.read_csv(f'data/{name}/valid_mask.csv', index_col=0)
+        val_mask = val_mask_df.values.reshape(-1)
+        val_idx = np.where(val_mask)[0]
         test_mask_df = pd.read_csv(f'data/{name}/test_mask.csv', index_col=0)
         test_mask = test_mask_df.values.reshape(-1)
         test_idx = np.where(test_mask)[0]
@@ -68,7 +68,7 @@ class Dataset:
             graph = dgl.add_self_loop(graph)
 
         train_idx = torch.from_numpy(train_idx)
-        valid_idx = torch.from_numpy(valid_idx)
+        val_idx = torch.from_numpy(val_idx)
         test_idx = torch.from_numpy(test_idx)
 
         self.name = name
@@ -79,7 +79,7 @@ class Dataset:
         self.targets = targets.to(device)
 
         self.train_idx = train_idx.to(device)
-        self.valid_idx = valid_idx.to(device)
+        self.val_idx = val_idx.to(device)
         self.test_idx = test_idx.to(device)
 
         self.num_features = features.shape[1]
@@ -104,8 +104,8 @@ class Dataset:
             train_metric = roc_auc_score(y_true=self.targets[self.train_idx].cpu().numpy(),
                                          y_score=preds[self.train_idx].cpu().numpy()).item()
 
-            valid_metric = roc_auc_score(y_true=self.targets[self.valid_idx].cpu().numpy(),
-                                         y_score=preds[self.valid_idx].cpu().numpy()).item()
+            val_metric = roc_auc_score(y_true=self.targets[self.val_idx].cpu().numpy(),
+                                       y_score=preds[self.val_idx].cpu().numpy()).item()
 
             test_metric = roc_auc_score(y_true=self.targets[self.test_idx].cpu().numpy(),
                                         y_score=preds[self.test_idx].cpu().numpy()).item()
@@ -113,12 +113,12 @@ class Dataset:
         elif self.metric == 'accuracy':
             preds = preds.argmax(axis=1)
             train_metric = (preds[self.train_idx] == self.targets[self.train_idx]).float().mean().item()
-            valid_metric = (preds[self.valid_idx] == self.targets[self.valid_idx]).float().mean().item()
+            val_metric = (preds[self.val_idx] == self.targets[self.val_idx]).float().mean().item()
             test_metric = (preds[self.test_idx] == self.targets[self.test_idx]).float().mean().item()
 
         elif self.metric == 'MSE':
             train_metric = ((preds[self.train_idx] - self.targets[self.train_idx]) ** 2).mean().item()
-            valid_metric = ((preds[self.valid_idx] - self.targets[self.valid_idx]) ** 2).mean().item()
+            val_metric = ((preds[self.val_idx] - self.targets[self.val_idx]) ** 2).mean().item()
             test_metric = ((preds[self.test_idx] - self.targets[self.test_idx]) ** 2).mean().item()
 
         else:
@@ -126,7 +126,7 @@ class Dataset:
 
         metrics = {
             f'train {self.metric}': train_metric,
-            f'valid {self.metric}': valid_metric,
+            f'val {self.metric}': val_metric,
             f'test {self.metric}': test_metric
         }
 
