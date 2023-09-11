@@ -28,13 +28,13 @@ class Dataset:
             info = yaml.safe_load(file)
 
         features_df = pd.read_csv(f'data/{name}/features.csv', index_col=0)
-        num_features = features_df[info['num_feature_names']].values
-        bin_features = features_df[info['bin_feature_names']].values
-        cat_features = features_df[info['cat_feature_names']].values
-        targets = features_df[info['target_name']].values
+        num_features = features_df[info['num_feature_names']].values.astype(np.float32)
+        bin_features = features_df[info['bin_feature_names']].values.astype(np.float32)
+        cat_features = features_df[info['cat_feature_names']].values.astype(np.float32)
+        targets = features_df[info['target_name']].values.astype(np.float32)
 
         num_features = self.num_features_transforms[num_features_transform].fit_transform(num_features)
-        cat_features = OneHotEncoder(sparse_output=False).fit_transform(cat_features)
+        cat_features = OneHotEncoder(sparse_output=False, dtype=np.float32).fit_transform(cat_features)
 
         if info['task'] == 'classification':
             num_classes = len(np.unique(targets))
@@ -43,7 +43,7 @@ class Dataset:
             num_targets = 1
 
         if num_targets > 1:
-            targets = targets.astype(int)
+            targets = targets.astype(np.int64)
 
         edges_df = pd.read_csv(f'data/{name}/edgelist.csv')
         edges = edges_df.values
