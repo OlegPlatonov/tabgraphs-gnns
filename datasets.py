@@ -6,7 +6,7 @@ from torch.nn import functional as F
 import dgl
 from sklearn.preprocessing import (FunctionTransformer, StandardScaler, MinMaxScaler, RobustScaler, PowerTransformer,
                                    QuantileTransformer, OneHotEncoder)
-from sklearn.metrics import roc_auc_score
+from sklearn.metrics import roc_auc_score, r2_score
 
 
 class Dataset:
@@ -98,7 +98,7 @@ class Dataset:
 
         elif info['task'] == 'regression':
             self.loss_fn = F.mse_loss
-            self.metric = 'MSE'
+            self.metric = 'R2'
         else:
             raise ValueError(f'Uknown task type: {info["task"]}.')
 
@@ -119,10 +119,15 @@ class Dataset:
             val_metric = (preds[self.val_idx] == self.targets[self.val_idx]).float().mean().item()
             test_metric = (preds[self.test_idx] == self.targets[self.test_idx]).float().mean().item()
 
-        elif self.metric == 'MSE':
-            train_metric = ((preds[self.train_idx] - self.targets[self.train_idx]) ** 2).mean().item()
-            val_metric = ((preds[self.val_idx] - self.targets[self.val_idx]) ** 2).mean().item()
-            test_metric = ((preds[self.test_idx] - self.targets[self.test_idx]) ** 2).mean().item()
+        elif self.metric == 'R2':
+            train_metric = r2_score(y_true=self.targets[self.train_idx].cpu().numpy(),
+                                    y_pred=preds[self.train_idx].cpu().numpy()).item()
+
+            val_metric = r2_score(y_true=self.targets[self.val_idx].cpu().numpy(),
+                                  y_pred=preds[self.val_idx].cpu().numpy()).item()
+
+            test_metric = r2_score(y_true=self.targets[self.test_idx].cpu().numpy(),
+                                   y_pred=preds[self.test_idx].cpu().numpy()).item()
 
         else:
             raise ValueError(f'Unknown metric: {self.metric}.')
