@@ -22,7 +22,7 @@ class Dataset:
                                                           random_state=0)
     }
 
-    def __init__(self, name, add_self_loops=False, num_features_transform='standard-scaler', device='cpu'):
+    def __init__(self, name, add_self_loops=False, num_features_transform='none', device='cpu'):
         print('Preparing data...')
         with open(f'data/{name}/info.yaml', 'r') as file:
             info = yaml.safe_load(file)
