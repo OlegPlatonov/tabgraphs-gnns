@@ -40,7 +40,8 @@ class Dataset:
             cat_features = OneHotEncoder(sparse_output=False, dtype=np.float32).fit_transform(cat_features)
 
         if info['task'] == 'classification':
-            num_classes = len(np.unique(targets))
+            classes = np.unique(targets)
+            num_classes = len(classes) if -1 not in classes else len(classes) - 1   # -1 is used for unlabeled nodes
             num_targets = 1 if num_classes == 2 else num_classes
         else:
             num_targets = 1
