@@ -15,8 +15,8 @@ def get_args():
     parser.add_argument('--name', type=str, default=None, help='Experiment name. If None, model name is used.')
     parser.add_argument('--save_dir', type=str, default='experiments', help='Base directory for saving information.')
     parser.add_argument('--dataset', type=str, default='vk-users',
-                        choices=['vk-users', 'hm-products', 'avazu-devices', 'amazon-users-p', 'amazon-users-s',
-                                 'amazon-users-v', 'tolokers-tab', 'questions-tab'])
+                        choices=['vk-users-r', 'vk-users-c', 'hm-products', 'avazu-devices', 'amazon-users-p',
+                                 'amazon-users-s', 'amazon-users-v', 'tolokers-tab', 'questions-tab'])
 
     # numerical features preprocessing
     parser.add_argument('--numerical_features_transform', type=str, default='none',
