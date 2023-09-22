@@ -6,6 +6,7 @@ from torch.nn import functional as F
 import dgl
 from sklearn.preprocessing import (FunctionTransformer, StandardScaler, MinMaxScaler, RobustScaler, PowerTransformer,
                                    QuantileTransformer, OneHotEncoder)
+from sklearn.impute import SimpleImputer
 from sklearn.metrics import roc_auc_score, r2_score
 
 
@@ -35,6 +36,7 @@ class Dataset:
 
         if num_features.shape[1] > 0:
             num_features = self.num_features_transforms[num_features_transform].fit_transform(num_features)
+            num_features = SimpleImputer(missing_values=np.nan, strategy='mean').fit_transform(num_features)
 
         if cat_features.shape[1] > 0:
             cat_features = OneHotEncoder(sparse_output=False, dtype=np.float32).fit_transform(cat_features)
