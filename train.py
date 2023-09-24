@@ -20,7 +20,7 @@ def get_args():
                                  'tolokers-tab', 'questions-tab'])
 
     # numerical features preprocessing
-    parser.add_argument('--numerical_features_transform', type=str, default='none',
+    parser.add_argument('--numerical_features_transform', type=str, default='quantile-transform-normal',
                         choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
                                  'power-transform-yeo-johnson', 'quantile-transform-normal',
                                  'quantile-transform-uniform'])
