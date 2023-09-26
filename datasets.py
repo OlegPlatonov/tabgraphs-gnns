@@ -11,8 +11,8 @@ from sklearn.metrics import roc_auc_score, r2_score
 
 
 class Dataset:
-    num_features_transforms = {
-        'none': FunctionTransformer(lambda x: x),
+    transforms = {
+        'none': FunctionTransformer(func=lambda x: x, inverse_func=lambda x: x),
         'standard-scaler': StandardScaler(),
         'min-max-scaler': MinMaxScaler(),
         'robust-scaler': RobustScaler(unit_variance=True),
@@ -23,7 +23,8 @@ class Dataset:
                                                           random_state=0)
     }
 
-    def __init__(self, name, add_self_loops=False, num_features_transform='none', device='cpu'):
+    def __init__(self, name, add_self_loops=False, num_features_transform='none', regression_target_transform='none',
+                 device='cpu'):
         print('Preparing data...')
         with open(f'data/{name}/info.yaml', 'r') as file:
             info = yaml.safe_load(file)
@@ -35,11 +36,16 @@ class Dataset:
         targets = features_df[info['target_name']].values.astype(np.float32)
 
         if num_features.shape[1] > 0:
-            num_features = self.num_features_transforms[num_features_transform].fit_transform(num_features)
+            num_features = self.transforms[num_features_transform].fit_transform(num_features)
             num_features = SimpleImputer(missing_values=np.nan, strategy='mean').fit_transform(num_features)
 
         if cat_features.shape[1] > 0:
             cat_features = OneHotEncoder(sparse_output=False, dtype=np.float32).fit_transform(cat_features)
+
+        if info['task'] == 'regression':
+            targets_orig = targets
+            targets_transform = self.transforms[regression_target_transform]
+            targets = targets_transform.fit_transform(targets.reshape(-1, 1)).reshape(-1)
 
         if info['task'] == 'classification':
             classes = np.unique(targets)
@@ -67,6 +73,8 @@ class Dataset:
         features = np.concatenate([num_features, bin_features, cat_features], axis=1)
         features = torch.from_numpy(features)
         targets = torch.from_numpy(targets)
+        if info['task'] == 'regression':
+            targets_orig = torch.from_numpy(targets_orig)
 
         edges = torch.from_numpy(edges)
         graph = dgl.graph((edges[:, 0], edges[:, 1]), num_nodes=len(features), idtype=torch.int)
@@ -83,6 +91,8 @@ class Dataset:
         self.graph = graph.to(device)
         self.features = features.to(device)
         self.targets = targets.to(device)
+        if info['task'] == 'regression':
+            self.targets_orig = targets_orig.to(device)
 
         self.train_idx = train_idx.to(device)
         self.val_idx = val_idx.to(device)
@@ -102,6 +112,7 @@ class Dataset:
         elif info['task'] == 'regression':
             self.loss_fn = F.mse_loss
             self.metric = 'R2'
+            self.targets_transform = targets_transform
         else:
             raise ValueError(f'Uknown task type: {info["task"]}.')
 
@@ -123,14 +134,21 @@ class Dataset:
             test_metric = (preds[self.test_idx] == self.targets[self.test_idx]).float().mean().item()
 
         elif self.metric == 'R2':
-            train_metric = r2_score(y_true=self.targets[self.train_idx].cpu().numpy(),
-                                    y_pred=preds[self.train_idx].cpu().numpy()).item()
+            targets_orig = self.targets_orig.cpu().numpy()
+            preds_orig = self.targets_transform.inverse_transform(preds.cpu().numpy().reshape(-1, 1)).reshape(-1)
 
-            val_metric = r2_score(y_true=self.targets[self.val_idx].cpu().numpy(),
-                                  y_pred=preds[self.val_idx].cpu().numpy()).item()
+            train_idx = self.train_idx.cpu().numpy()
+            val_idx = self.val_idx.cpu().numpy()
+            test_idx = self.test_idx.cpu().numpy()
 
-            test_metric = r2_score(y_true=self.targets[self.test_idx].cpu().numpy(),
-                                   y_pred=preds[self.test_idx].cpu().numpy()).item()
+            train_metric = r2_score(y_true=targets_orig[train_idx],
+                                    y_pred=preds_orig[train_idx]).item()
+
+            val_metric = r2_score(y_true=targets_orig[val_idx],
+                                  y_pred=preds_orig[val_idx]).item()
+
+            test_metric = r2_score(y_true=targets_orig[test_idx],
+                                   y_pred=preds_orig[test_idx]).item()
 
         else:
             raise ValueError(f'Unknown metric: {self.metric}.')
