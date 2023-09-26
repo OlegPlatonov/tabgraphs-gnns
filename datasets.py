@@ -86,6 +86,7 @@ class Dataset:
         test_idx = torch.from_numpy(test_idx)
 
         self.name = name
+        self.task = info['task']
         self.device = device
 
         self.graph = graph.to(device)
