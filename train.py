@@ -25,6 +25,13 @@ def get_args():
                                  'power-transform-yeo-johnson', 'quantile-transform-normal',
                                  'quantile-transform-uniform'])
 
+    # PLR embeddings for numerical features
+    parser.add_argument('--plr', default=False, action='store_true', help='Use PLR embeddings for numerical features.')
+    parser.add_argument('--plr_n_frequencies', type=int, default=48)
+    parser.add_argument('--plr_frequency_scale', type=int, default=0.01)
+    parser.add_argument('--plr_d_embedding', type=int, default=16)
+    parser.add_argument('--plr_lite', default=False, action='store_true')
+
     # regression target transform
     parser.add_argument('--regression_target_transform', type=str, default='standard-scaler',
                         choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
@@ -112,7 +119,13 @@ def main():
                       hidden_dim_multiplier=args.hidden_dim_multiplier,
                       num_heads=args.num_heads,
                       normalization=args.normalization,
-                      dropout=args.dropout)
+                      dropout=args.dropout,
+                      use_plr=args.plr,
+                      num_numeric_features=dataset.num_numeric_features,
+                      plr_n_frequencies=args.plr_n_frequencies,
+                      plr_frequency_scale=args.plr_frequency_scale,
+                      plr_d_embedding=args.plr_d_embedding,
+                      use_plr_lite=args.plr_lite)
 
         model.to(args.device)
 

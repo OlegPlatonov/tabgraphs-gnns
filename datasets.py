@@ -87,6 +87,7 @@ class Dataset:
 
         self.name = name
         self.task = info['task']
+        self.num_numeric_features = len(info['num_feature_names'])
         self.device = device
 
         self.graph = graph.to(device)
