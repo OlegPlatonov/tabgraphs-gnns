@@ -33,7 +33,7 @@ def get_args():
     parser.add_argument('--plr_lite', default=False, action='store_true')
 
     # regression target transform
-    parser.add_argument('--regression_target_transform', type=str, default='standard-scaler',
+    parser.add_argument('--regression_target_transform', type=str, default='none',
                         choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
                                  'power-transform-yeo-johnson', 'quantile-transform-normal',
                                  'quantile-transform-uniform'])
