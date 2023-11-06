@@ -28,7 +28,7 @@ def get_args():
     # PLR embeddings for numerical features
     parser.add_argument('--plr', default=False, action='store_true', help='Use PLR embeddings for numerical features.')
     parser.add_argument('--plr_n_frequencies', type=int, default=48)
-    parser.add_argument('--plr_frequency_scale', type=int, default=0.01)
+    parser.add_argument('--plr_frequency_scale', type=float, default=0.01)
     parser.add_argument('--plr_d_embedding', type=int, default=16)
     parser.add_argument('--plr_lite', default=False, action='store_true')
 
