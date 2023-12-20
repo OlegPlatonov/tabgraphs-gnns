@@ -16,7 +16,7 @@ def get_args():
     parser.add_argument('--save_dir', type=str, default='experiments', help='Base directory for saving information.')
     parser.add_argument('--dataset', type=str, default='vk-users',
                         choices=['vk-users-r', 'vk-users-c', 'hm-products', 'hm-products-group', 'avazu-devices',
-                                 'yp-maps', 'yp-fraud', 'yp-fraud-v2', 'yp-fraud-v3', 'yp-games', 'yp-games-v2',
+                                 'yp-maps', 'yp-fraud', 'yp-fraud-v2', 'yp-fraud-v3', 'yp-games', 'yp-games-v2', 'yp-games-c',
                                  'amazon-users-p', 'amazon-users-s', 'amazon-users-v', 'tolokers-tab', 'questions-tab'])
 
     # numerical features preprocessing
