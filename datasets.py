@@ -131,7 +131,13 @@ class Dataset:
             raise ValueError(f'Uknown task type: {info["task"]}.')
 
     def compute_metrics(self, preds):
-        if self.metric == 'ROC AUC':
+        if self.metric == 'accuracy':
+            preds = preds.argmax(axis=1)
+            train_metric = (preds[self.train_idx] == self.targets[self.train_idx]).float().mean().item()
+            val_metric = (preds[self.val_idx] == self.targets[self.val_idx]).float().mean().item()
+            test_metric = (preds[self.test_idx] == self.targets[self.test_idx]).float().mean().item()
+
+        elif self.metric == 'ROC AUC':
             train_metric = roc_auc_score(y_true=self.targets[self.train_idx].cpu().numpy(),
                                          y_score=preds[self.train_idx].cpu().numpy()).item()
 
@@ -140,12 +146,6 @@ class Dataset:
 
             test_metric = roc_auc_score(y_true=self.targets[self.test_idx].cpu().numpy(),
                                         y_score=preds[self.test_idx].cpu().numpy()).item()
-
-        elif self.metric == 'accuracy':
-            preds = preds.argmax(axis=1)
-            train_metric = (preds[self.train_idx] == self.targets[self.train_idx]).float().mean().item()
-            val_metric = (preds[self.val_idx] == self.targets[self.val_idx]).float().mean().item()
-            test_metric = (preds[self.test_idx] == self.targets[self.test_idx]).float().mean().item()
 
         elif self.metric == 'R2':
             targets_orig = self.targets_orig.cpu().numpy()
