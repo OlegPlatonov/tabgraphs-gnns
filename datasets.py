@@ -42,10 +42,25 @@ class Dataset:
         if cat_features.shape[1] > 0:
             cat_features = OneHotEncoder(sparse_output=False, dtype=np.float32).fit_transform(cat_features)
 
+        if use_node_embeddings:
+            node_embeddings = np.load(f'data/{name}/node_embeddings.npz')['node_embeds']
+
+        train_mask_df = pd.read_csv(f'data/{name}/train_mask.csv', index_col=0)
+        train_mask = train_mask_df.values.reshape(-1)
+        train_idx = np.where(train_mask)[0]
+        val_mask_df = pd.read_csv(f'data/{name}/valid_mask.csv', index_col=0)
+        val_mask = val_mask_df.values.reshape(-1)
+        val_idx = np.where(val_mask)[0]
+        test_mask_df = pd.read_csv(f'data/{name}/test_mask.csv', index_col=0)
+        test_mask = test_mask_df.values.reshape(-1)
+        test_idx = np.where(test_mask)[0]
+
         if info['task'] == 'regression':
-            targets_orig = targets
             targets_transform = self.transforms[regression_target_transform]
-            targets = targets_transform.fit_transform(targets.reshape(-1, 1)).reshape(-1)
+            targets_transform.fit(targets[train_idx].reshape(-1, 1))
+            targets_orig = targets.copy()
+            labeled_idx = np.concatenate([train_idx, val_idx, test_idx], axis=0)
+            targets[labeled_idx] = targets_transform.transform(targets[labeled_idx].reshape(-1, 1)).reshape(-1)
 
         if info['task'] == 'classification':
             classes = np.unique(targets)
@@ -57,21 +72,8 @@ class Dataset:
         if num_targets > 1:
             targets = targets.astype(np.int64)
 
-        if use_node_embeddings:
-            node_embeddings = np.load(f'data/{name}/node_embeddings.npz')['node_embeds']
-
         edges_df = pd.read_csv(f'data/{name}/edgelist.csv')
         edges = edges_df.values
-
-        train_mask_df = pd.read_csv(f'data/{name}/train_mask.csv', index_col=0)
-        train_mask = train_mask_df.values.reshape(-1)
-        train_idx = np.where(train_mask)[0]
-        val_mask_df = pd.read_csv(f'data/{name}/valid_mask.csv', index_col=0)
-        val_mask = val_mask_df.values.reshape(-1)
-        val_idx = np.where(val_mask)[0]
-        test_mask_df = pd.read_csv(f'data/{name}/test_mask.csv', index_col=0)
-        test_mask = test_mask_df.values.reshape(-1)
-        test_idx = np.where(test_mask)[0]
 
         features = np.concatenate([num_features, bin_features, cat_features], axis=1)
         if use_node_embeddings:
