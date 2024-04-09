@@ -99,7 +99,6 @@ class Dataset:
 
         self.name = name
         self.task = info['task']
-        self.num_numeric_features = len(info['num_feature_names'])
         self.device = device
 
         self.graph = graph.to(device)
@@ -112,7 +111,8 @@ class Dataset:
         self.val_idx = val_idx.to(device)
         self.test_idx = test_idx.to(device)
 
-        self.num_features = features.shape[1]
+        self.num_inputs = features.shape[1]
+        self.num_numeric_inputs = len(info['num_feature_names'])
         self.num_targets = num_targets
 
         if info['task'] == 'classification':

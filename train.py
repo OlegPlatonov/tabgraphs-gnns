@@ -119,7 +119,7 @@ def main():
     for run in range(1, args.num_runs + 1):
         model = Model(model_name=args.model,
                       num_layers=args.num_layers,
-                      input_dim=dataset.num_features,
+                      input_dim=dataset.num_inputs,
                       hidden_dim=args.hidden_dim,
                       output_dim=dataset.num_targets,
                       hidden_dim_multiplier=args.hidden_dim_multiplier,
@@ -127,7 +127,7 @@ def main():
                       normalization=args.normalization,
                       dropout=args.dropout,
                       use_plr=args.plr,
-                      num_numeric_features=dataset.num_numeric_features,
+                      num_numeric_inputs=dataset.num_numeric_inputs,
                       plr_n_frequencies=args.plr_n_frequencies,
                       plr_frequency_scale=args.plr_frequency_scale,
                       plr_d_embedding=args.plr_d_embedding,
