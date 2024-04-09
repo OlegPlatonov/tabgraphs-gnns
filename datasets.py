@@ -23,8 +23,8 @@ class Dataset:
                                                           random_state=0)
     }
 
-    def __init__(self, name, add_self_loops=False, num_features_transform='none', regression_target_transform='none',
-                 device='cpu'):
+    def __init__(self, name, add_self_loops=False, num_features_transform='none', use_node_embeddings=False,
+                 regression_target_transform='none', device='cpu'):
         print('Preparing data...')
         with open(f'data/{name}/info.yaml', 'r') as file:
             info = yaml.safe_load(file)
@@ -57,6 +57,9 @@ class Dataset:
         if num_targets > 1:
             targets = targets.astype(np.int64)
 
+        if use_node_embeddings:
+            node_embeddings = np.load(f'data/{name}/node_embeddings.npz')['node_embeds']
+
         edges_df = pd.read_csv(f'data/{name}/edgelist.csv')
         edges = edges_df.values
 
@@ -71,6 +74,9 @@ class Dataset:
         test_idx = np.where(test_mask)[0]
 
         features = np.concatenate([num_features, bin_features, cat_features], axis=1)
+        if use_node_embeddings:
+            features = np.concatenate([features, node_embeddings], axis=1)
+
         features = torch.from_numpy(features)
         targets = torch.from_numpy(targets)
         if info['task'] == 'regression':

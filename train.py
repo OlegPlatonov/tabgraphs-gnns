@@ -34,6 +34,9 @@ def get_args():
     parser.add_argument('--plr_d_embedding', type=int, default=16)
     parser.add_argument('--plr_lite', default=False, action='store_true')
 
+    # additional features
+    parser.add_argument('--use_node_embeddings', default=False, action='store_true')
+
     # regression target transform
     parser.add_argument('--regression_target_transform', type=str, default='none',
                         choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
@@ -107,6 +110,7 @@ def main():
     dataset = Dataset(name=args.dataset,
                       add_self_loops=(args.model in ['GCN', 'GAT', 'GT']),
                       num_features_transform=args.numerical_features_transform,
+                      use_node_embeddings=args.use_node_embeddings,
                       regression_target_transform=args.regression_target_transform,
                       device=args.device)
 
