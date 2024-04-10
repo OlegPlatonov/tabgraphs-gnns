@@ -8,6 +8,7 @@ from sklearn.preprocessing import (FunctionTransformer, StandardScaler, MinMaxSc
                                    QuantileTransformer, OneHotEncoder, KBinsDiscretizer)
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import roc_auc_score, r2_score
+from utils import cross_entropy_with_soft_labels, get_soft_labels
 
 
 class Dataset:
@@ -25,7 +26,8 @@ class Dataset:
 
     def __init__(self, name, add_self_loops=False, num_features_transform='none', use_node_embeddings=False,
                  regression_by_classification=False, num_regression_target_bins=50,
-                 regression_target_binning_strategy='uniform', regression_target_transform='none', device='cpu'):
+                 regression_target_binning_strategy='uniform', use_soft_labels=False,
+                 regression_target_transform='none', device='cpu'):
         print('Preparing data...')
         with open(f'data/{name}/info.yaml', 'r') as file:
             info = yaml.safe_load(file)
@@ -67,6 +69,9 @@ class Dataset:
                                                  subsample=None)
                 target_binner.fit(targets[train_idx][:, None])
                 targets[labeled_idx] = target_binner.transform(targets[labeled_idx][:, None]).squeeze(1)
+                targets = targets.astype(np.int64)
+                if use_soft_labels:
+                    targets = get_soft_labels(targets, num_bins=num_regression_target_bins, labeled_idx=labeled_idx)
 
                 bin_edges = target_binner.bin_edges_[0]
                 bin_preds = (bin_edges[:-1] + bin_edges[1:]) / 2
@@ -80,13 +85,14 @@ class Dataset:
             classes = np.unique(targets)
             num_classes = len(classes) if -1 not in classes else len(classes) - 1   # -1 is used for unlabeled nodes
             num_targets = 1 if num_classes == 2 else num_classes
+            if num_classes > 2:
+                targets = targets.astype(np.int64)
+
         elif info['task'] == 'regression':
             num_targets = num_regression_target_bins if regression_by_classification else 1
+
         else:
             raise ValueError(f'Unknown task: {info["task"]}.')
-
-        if num_targets > 1:
-            targets = targets.astype(np.int64)
 
         edges_df = pd.read_csv(f'data/{name}/edgelist.csv')
         edges = edges_df.values
@@ -125,6 +131,7 @@ class Dataset:
         if info['task'] == 'regression':
             self.targets_orig = targets_orig.to(device)
             self.regression_by_classification = regression_by_classification
+            self.use_soft_labels = use_soft_labels
             if regression_by_classification:
                 self.bin_preds = bin_preds.to(device)
                 self.target_binner = target_binner
@@ -150,7 +157,10 @@ class Dataset:
         elif info['task'] == 'regression':
             self.metric = 'R2'
             if regression_by_classification:
-                self.loss_fn = F.cross_entropy
+                if use_soft_labels:
+                    self.loss_fn = cross_entropy_with_soft_labels
+                else:
+                    self.loss_fn = F.cross_entropy
             else:
                 self.loss_fn = F.mse_loss
 

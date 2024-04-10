@@ -2,6 +2,7 @@ import os
 import yaml
 import numpy as np
 import torch
+from torch.nn import functional as F
 
 
 class Logger:
@@ -126,3 +127,34 @@ def get_lr_scheduler_with_warmup(optimizer, num_warmup_steps=None, num_steps=Non
     lr_scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=get_lr_multiplier, last_epoch=last_step)
 
     return lr_scheduler
+
+
+def cross_entropy_with_soft_labels(input, target):
+    log_probs = F.log_softmax(input=input, dim=1)
+    loss = - (log_probs * target).sum(axis=1).mean()
+
+    return loss
+
+
+def get_soft_labels(targets, num_bins, labeled_idx):
+    """Can be used for regression by classification."""
+    soft_targets = np.zeros((len(targets), num_bins))
+    soft_targets[labeled_idx, targets[labeled_idx]] = 0.4
+
+    idx = targets[labeled_idx] + 1
+    idx[idx >= num_bins] -= 1
+    soft_targets[labeled_idx, idx] += 0.2
+
+    idx = targets[labeled_idx] - 1
+    idx[idx < 0] += 1
+    soft_targets[labeled_idx, idx] += 0.2
+
+    idx = targets[labeled_idx] + 2
+    idx[idx >= num_bins] -= 2
+    soft_targets[labeled_idx, idx] += 0.1
+
+    idx = targets[labeled_idx] - 2
+    idx[idx < 0] +=2
+    soft_targets[labeled_idx, idx] += 0.1
+
+    return soft_targets

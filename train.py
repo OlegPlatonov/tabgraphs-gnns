@@ -45,6 +45,8 @@ def get_args():
     parser.add_argument('--regression_target_binning_strategy', type=str, default='uniform',
                         choices=['uniform', 'kmeans', 'quantile'],
                         help='Only used if regression_by_classification is True.')
+    parser.add_argument('--use_soft_labels', default=False, action='store_true',
+                        help='Only used if regression_by_classification is True.')
     parser.add_argument('--regression_target_transform', type=str, default='none',
                         choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
                                  'power-transform-yeo-johnson', 'quantile-transform-normal',
@@ -122,6 +124,7 @@ def main():
                       regression_by_classification=args.regression_by_classification,
                       num_regression_target_bins=args.num_regression_target_bins,
                       regression_target_binning_strategy=args.regression_target_binning_strategy,
+                      use_soft_labels=args.use_soft_labels,
                       regression_target_transform=args.regression_target_transform,
                       device=args.device)
 
