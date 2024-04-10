@@ -37,11 +37,19 @@ def get_args():
     # additional features
     parser.add_argument('--use_node_embeddings', default=False, action='store_true')
 
-    # regression target transform
+    # regression options
+    parser.add_argument('--regression_by_classification', default=False, action='store_true',
+                        help='Convert regression task to classification by binning targets.')
+    parser.add_argument('--num_regression_target_bins', type=int, default=50,
+                        help='Only used if regression_by_classification is True.')
+    parser.add_argument('--regression_target_binning_strategy', type=str, default='uniform',
+                        choices=['uniform', 'kmeans', 'quantile'],
+                        help='Only used if regression_by_classification is True.')
     parser.add_argument('--regression_target_transform', type=str, default='none',
                         choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
                                  'power-transform-yeo-johnson', 'quantile-transform-normal',
-                                 'quantile-transform-uniform'])
+                                 'quantile-transform-uniform'],
+                        help='Only used if regression_by_classification is False.')
 
     # model architecture
     parser.add_argument('--model', type=str, default='GT-sep',
@@ -111,6 +119,9 @@ def main():
                       add_self_loops=(args.model in ['GCN', 'GAT', 'GT']),
                       num_features_transform=args.numerical_features_transform,
                       use_node_embeddings=args.use_node_embeddings,
+                      regression_by_classification=args.regression_by_classification,
+                      num_regression_target_bins=args.num_regression_target_bins,
+                      regression_target_binning_strategy=args.regression_target_binning_strategy,
                       regression_target_transform=args.regression_target_transform,
                       device=args.device)
 

@@ -5,7 +5,7 @@ import torch
 from torch.nn import functional as F
 import dgl
 from sklearn.preprocessing import (FunctionTransformer, StandardScaler, MinMaxScaler, RobustScaler, PowerTransformer,
-                                   QuantileTransformer, OneHotEncoder)
+                                   QuantileTransformer, OneHotEncoder, KBinsDiscretizer)
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import roc_auc_score, r2_score
 
@@ -24,7 +24,8 @@ class Dataset:
     }
 
     def __init__(self, name, add_self_loops=False, num_features_transform='none', use_node_embeddings=False,
-                 regression_target_transform='none', device='cpu'):
+                 regression_by_classification=False, num_regression_target_bins=50,
+                 regression_target_binning_strategy='uniform', regression_target_transform='none', device='cpu'):
         print('Preparing data...')
         with open(f'data/{name}/info.yaml', 'r') as file:
             info = yaml.safe_load(file)
@@ -56,18 +57,33 @@ class Dataset:
         test_idx = np.where(test_mask)[0]
 
         if info['task'] == 'regression':
-            targets_transform = self.transforms[regression_target_transform]
-            targets_transform.fit(targets[train_idx].reshape(-1, 1))
             targets_orig = targets.copy()
             labeled_idx = np.concatenate([train_idx, val_idx, test_idx], axis=0)
-            targets[labeled_idx] = targets_transform.transform(targets[labeled_idx].reshape(-1, 1)).reshape(-1)
+
+            if regression_by_classification:
+                target_binner = KBinsDiscretizer(n_bins=num_regression_target_bins,
+                                                 strategy=regression_target_binning_strategy,
+                                                 encode='ordinal',
+                                                 subsample=None)
+                target_binner.fit(targets[train_idx][:, None])
+                targets[labeled_idx] = target_binner.transform(targets[labeled_idx][:, None]).squeeze(1)
+
+                bin_edges = target_binner.bin_edges_[0]
+                bin_preds = (bin_edges[:-1] + bin_edges[1:]) / 2
+
+            else:
+                targets_transform = self.transforms[regression_target_transform]
+                targets_transform.fit(targets[train_idx][:, None])
+                targets[labeled_idx] = targets_transform.transform(targets[labeled_idx][:, None]).squeeze(1)
 
         if info['task'] == 'classification':
             classes = np.unique(targets)
             num_classes = len(classes) if -1 not in classes else len(classes) - 1   # -1 is used for unlabeled nodes
             num_targets = 1 if num_classes == 2 else num_classes
+        elif info['task'] == 'regression':
+            num_targets = num_regression_target_bins if regression_by_classification else 1
         else:
-            num_targets = 1
+            raise ValueError(f'Unknown task: {info["task"]}.')
 
         if num_targets > 1:
             targets = targets.astype(np.int64)
@@ -83,6 +99,8 @@ class Dataset:
         targets = torch.from_numpy(targets)
         if info['task'] == 'regression':
             targets_orig = torch.from_numpy(targets_orig)
+            if regression_by_classification:
+                bin_preds = torch.from_numpy(bin_preds)
 
         edges = torch.from_numpy(edges)
         graph = dgl.graph((edges[:, 0], edges[:, 1]), num_nodes=len(features), idtype=torch.int)
@@ -106,6 +124,12 @@ class Dataset:
         self.targets = targets.to(device)
         if info['task'] == 'regression':
             self.targets_orig = targets_orig.to(device)
+            self.regression_by_classification = regression_by_classification
+            if regression_by_classification:
+                self.bin_preds = bin_preds.to(device)
+                self.target_binner = target_binner
+            else:
+                self.targets_transform = targets_transform
 
         self.train_idx = train_idx.to(device)
         self.val_idx = val_idx.to(device)
@@ -117,55 +141,65 @@ class Dataset:
 
         if info['task'] == 'classification':
             if num_targets == 1:
-                self.loss_fn = F.binary_cross_entropy_with_logits
                 self.metric = 'ROC AUC'
+                self.loss_fn = F.binary_cross_entropy_with_logits
             else:
-                self.loss_fn = F.cross_entropy
                 self.metric = 'accuracy'
+                self.loss_fn = F.cross_entropy
 
         elif info['task'] == 'regression':
-            self.loss_fn = F.mse_loss
             self.metric = 'R2'
-            self.targets_transform = targets_transform
+            if regression_by_classification:
+                self.loss_fn = F.cross_entropy
+            else:
+                self.loss_fn = F.mse_loss
+
         else:
-            raise ValueError(f'Uknown task type: {info["task"]}.')
+            raise ValueError(f'Unknown task: {info["task"]}.')
 
     def compute_metrics(self, preds):
-        if self.metric == 'accuracy':
-            preds = preds.argmax(axis=1)
-            train_metric = (preds[self.train_idx] == self.targets[self.train_idx]).float().mean().item()
-            val_metric = (preds[self.val_idx] == self.targets[self.val_idx]).float().mean().item()
-            test_metric = (preds[self.test_idx] == self.targets[self.test_idx]).float().mean().item()
+        if self.task == 'classification':
+            if self.metric == 'accuracy':
+                preds = preds.argmax(axis=1)
+                train_metric = (preds[self.train_idx] == self.targets[self.train_idx]).float().mean().item()
+                val_metric = (preds[self.val_idx] == self.targets[self.val_idx]).float().mean().item()
+                test_metric = (preds[self.test_idx] == self.targets[self.test_idx]).float().mean().item()
 
-        elif self.metric == 'ROC AUC':
-            train_metric = roc_auc_score(y_true=self.targets[self.train_idx].cpu().numpy(),
-                                         y_score=preds[self.train_idx].cpu().numpy()).item()
+            elif self.metric == 'ROC AUC':
+                targets = self.targets.cpu().numpy()
+                preds = preds.cpu().numpy()
 
-            val_metric = roc_auc_score(y_true=self.targets[self.val_idx].cpu().numpy(),
-                                       y_score=preds[self.val_idx].cpu().numpy()).item()
+                train_idx = self.train_idx.cpu().numpy()
+                val_idx = self.val_idx.cpu().numpy()
+                test_idx = self.test_idx.cpu().numpy()
 
-            test_metric = roc_auc_score(y_true=self.targets[self.test_idx].cpu().numpy(),
-                                        y_score=preds[self.test_idx].cpu().numpy()).item()
+                train_metric = roc_auc_score(y_true=targets[train_idx], y_score=preds[train_idx]).item()
+                val_metric = roc_auc_score(y_true=targets[val_idx], y_score=preds[val_idx]).item()
+                test_metric = roc_auc_score(y_true=targets[test_idx], y_score=preds[test_idx]).item()
 
-        elif self.metric == 'R2':
-            targets_orig = self.targets_orig.cpu().numpy()
-            preds_orig = self.targets_transform.inverse_transform(preds.cpu().numpy().reshape(-1, 1)).reshape(-1)
+            else:
+                raise ValueError(f'Unknown metric: {self.metric}.')
+
+        elif self.task == 'regression':
+            if self.regression_by_classification:
+                targets_orig = self.targets_orig.cpu().numpy()
+                bin_idx = preds.argmax(axis=1)
+                preds_orig = self.bin_preds[bin_idx].cpu().numpy()
+
+            else:
+                targets_orig = self.targets_orig.cpu().numpy()
+                preds_orig = self.targets_transform.inverse_transform(preds.cpu().numpy()[:, None]).squeeze(1)
 
             train_idx = self.train_idx.cpu().numpy()
             val_idx = self.val_idx.cpu().numpy()
             test_idx = self.test_idx.cpu().numpy()
 
-            train_metric = r2_score(y_true=targets_orig[train_idx],
-                                    y_pred=preds_orig[train_idx]).item()
-
-            val_metric = r2_score(y_true=targets_orig[val_idx],
-                                  y_pred=preds_orig[val_idx]).item()
-
-            test_metric = r2_score(y_true=targets_orig[test_idx],
-                                   y_pred=preds_orig[test_idx]).item()
+            train_metric = r2_score(y_true=targets_orig[train_idx], y_pred=preds_orig[train_idx]).item()
+            val_metric = r2_score(y_true=targets_orig[val_idx], y_pred=preds_orig[val_idx]).item()
+            test_metric = r2_score(y_true=targets_orig[test_idx], y_pred=preds_orig[test_idx]).item()
 
         else:
-            raise ValueError(f'Unknown metric: {self.metric}.')
+            raise ValueError(f'Unknown task: {self.task}.')
 
         metrics = {
             f'train {self.metric}': train_metric,
