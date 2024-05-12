@@ -29,9 +29,9 @@ def get_args():
 
     # PLR embeddings for numerical features
     parser.add_argument('--plr', default=False, action='store_true', help='Use PLR embeddings for numerical features.')
-    parser.add_argument('--plr_n_frequencies', type=int, default=48)
+    parser.add_argument('--plr_num_frequencies', type=int, default=48)
     parser.add_argument('--plr_frequency_scale', type=float, default=0.01)
-    parser.add_argument('--plr_d_embedding', type=int, default=16)
+    parser.add_argument('--plr_embedding_dim', type=int, default=16)
     parser.add_argument('--plr_lite', default=False, action='store_true')
 
     # additional features
@@ -142,9 +142,9 @@ def main():
                       dropout=args.dropout,
                       use_plr=args.plr,
                       num_numeric_inputs=dataset.num_numeric_inputs,
-                      plr_n_frequencies=args.plr_n_frequencies,
+                      plr_num_frequencies=args.plr_num_frequencies,
                       plr_frequency_scale=args.plr_frequency_scale,
-                      plr_d_embedding=args.plr_d_embedding,
+                      plr_embedding_dim=args.plr_embedding_dim,
                       use_plr_lite=args.plr_lite)
 
         model.to(args.device)

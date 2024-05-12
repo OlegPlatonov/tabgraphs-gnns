@@ -25,19 +25,19 @@ NORMALIZATION = {
 
 class Model(nn.Module):
     def __init__(self, model_name, num_layers, input_dim, hidden_dim, output_dim, hidden_dim_multiplier, num_heads,
-                 normalization, dropout, use_plr, num_numeric_inputs, plr_n_frequencies, plr_frequency_scale,
-                 plr_d_embedding, use_plr_lite):
+                 normalization, dropout, use_plr, num_numeric_inputs, plr_num_frequencies, plr_frequency_scale,
+                 plr_embedding_dim, use_plr_lite):
         super().__init__()
 
         normalization = NORMALIZATION[normalization]
 
         self.use_plr = use_plr
         if use_plr:
-            self.plr_embeddings = PLREmbeddings(n_features=num_numeric_inputs, n_frequencies=plr_n_frequencies,
-                                                frequency_scale=plr_frequency_scale, d_embedding=plr_d_embedding,
+            self.plr_embeddings = PLREmbeddings(num_features=num_numeric_inputs, num_frequencies=plr_num_frequencies,
+                                                frequency_scale=plr_frequency_scale, embedding_dim=plr_embedding_dim,
                                                 lite=use_plr_lite)
             self.num_numeric_inputs = num_numeric_inputs
-            input_dim = input_dim - num_numeric_inputs + num_numeric_inputs * plr_d_embedding
+            input_dim = input_dim - num_numeric_inputs + num_numeric_inputs * plr_embedding_dim
 
         self.input_linear = nn.Linear(in_features=input_dim, out_features=hidden_dim)
         self.dropout = nn.Dropout(p=dropout)
