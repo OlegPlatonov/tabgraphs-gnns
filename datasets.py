@@ -101,7 +101,11 @@ class Dataset:
         if use_node_embeddings:
             features = np.concatenate([features, node_embeddings], axis=1)
 
+        num_features_mask = np.zeros(features.shape[1], dtype=bool)
+        num_features_mask[:num_features.shape[1]] = True
+
         features = torch.from_numpy(features)
+        num_features_mask = torch.from_numpy(num_features_mask)
         targets = torch.from_numpy(targets)
         if info['task'] == 'regression':
             targets_orig = torch.from_numpy(targets_orig)
@@ -142,8 +146,8 @@ class Dataset:
         self.val_idx = val_idx.to(device)
         self.test_idx = test_idx.to(device)
 
-        self.num_inputs = features.shape[1]
-        self.num_numeric_inputs = len(info['num_feature_names'])
+        self.features_dim = features.shape[1]
+        self.num_features_mask = num_features_mask.to(device)
         self.num_targets = num_targets
 
         if info['task'] == 'classification':

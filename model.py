@@ -24,8 +24,8 @@ NORMALIZATION = {
 
 
 class Model(nn.Module):
-    def __init__(self, model_name, num_layers, input_dim, hidden_dim, output_dim, hidden_dim_multiplier, num_heads,
-                 normalization, dropout, use_plr, num_numeric_inputs, plr_num_frequencies, plr_frequency_scale,
+    def __init__(self, model_name, num_layers, features_dim, hidden_dim, output_dim, hidden_dim_multiplier, num_heads,
+                 normalization, dropout, use_plr, num_features_mask, plr_num_frequencies, plr_frequency_scale,
                  plr_embedding_dim, use_plr_lite):
         super().__init__()
 
@@ -33,11 +33,14 @@ class Model(nn.Module):
 
         self.use_plr = use_plr
         if use_plr:
-            self.plr_embeddings = PLREmbeddings(num_features=num_numeric_inputs, num_frequencies=plr_num_frequencies,
+            num_features_dim = num_features_mask.sum()
+            self.plr_embeddings = PLREmbeddings(num_features=num_features_dim, num_frequencies=plr_num_frequencies,
                                                 frequency_scale=plr_frequency_scale, embedding_dim=plr_embedding_dim,
                                                 lite=use_plr_lite)
-            self.num_numeric_inputs = num_numeric_inputs
-            input_dim = input_dim - num_numeric_inputs + num_numeric_inputs * plr_embedding_dim
+            self.num_features_mask = num_features_mask
+            input_dim = features_dim - num_features_dim + num_features_dim * plr_embedding_dim
+        else:
+            input_dim = features_dim
 
         self.input_linear = nn.Linear(in_features=input_dim, out_features=hidden_dim)
         self.dropout = nn.Dropout(p=dropout)
@@ -60,9 +63,9 @@ class Model(nn.Module):
 
     def forward(self, graph, x):
         if self.use_plr:
-            x_num = x[:, :self.num_numeric_inputs]
+            x_num = x[:, self.num_features_mask]
             x_num_embedded = self.plr_embeddings(x_num).flatten(start_dim=1)
-            x = torch.cat([x_num_embedded, x[:, self.num_numeric_inputs:]], axis=1)
+            x = torch.cat([x_num_embedded, x[:, ~self.num_features_mask]], axis=1)
 
         x = self.input_linear(x)
         x = self.dropout(x)
