@@ -113,11 +113,11 @@ class Dataset:
         edges = torch.from_numpy(edges)
         graph = dgl.graph((edges[:, 0], edges[:, 1]), num_nodes=len(features), idtype=torch.int)
 
-        if add_self_loops:
-            graph = dgl.add_self_loop(graph)
-
         if 'maps' in name:
             graph = dgl.to_bidirected(graph)
+
+        if add_self_loops:
+            graph = dgl.add_self_loop(graph)
 
         train_idx = torch.from_numpy(train_idx)
         val_idx = torch.from_numpy(val_idx)
