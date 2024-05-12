@@ -21,15 +21,10 @@ class PeriodicEmbeddings(nn.Module):
 class NLinear(nn.Module):
     def __init__(self, num_features, input_dim, output_dim, bias=True):
         super().__init__()
-        self.weight = nn.Parameter(torch.Tensor(num_features, input_dim, output_dim))
-        self.bias = nn.Parameter(torch.Tensor(num_features, output_dim)) if bias else None
 
-        with torch.no_grad():
-            for i in range(num_features):
-                layer = nn.Linear(in_features=input_dim, out_features=output_dim)
-                self.weight[i] = layer.weight.T
-                if self.bias is not None:
-                    self.bias[i] = layer.bias
+        init_max = 1 / input_dim ** 0.5
+        self.weight = nn.Parameter(torch.Tensor(num_features, input_dim, output_dim).uniform_(-init_max, init_max))
+        self.bias = nn.Parameter(torch.Tensor(num_features, output_dim).uniform_(-init_max, init_max)) if bias else None
 
     def forward(self, x):
         x = (x[..., None] * self.weight[None, ...]).sum(axis=2)
