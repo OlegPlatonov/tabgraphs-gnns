@@ -6,7 +6,7 @@ from torch.nn import functional as F
 import dgl
 from sklearn.preprocessing import (FunctionTransformer, StandardScaler, MinMaxScaler, RobustScaler, PowerTransformer,
                                    QuantileTransformer, OneHotEncoder, KBinsDiscretizer)
-from sklearn.metrics import roc_auc_score, r2_score
+from sklearn.metrics import average_precision_score, r2_score
 from utils import cross_entropy_with_soft_labels, get_soft_labels
 
 
@@ -150,7 +150,7 @@ class Dataset:
 
         if info['task'] == 'classification':
             if num_targets == 1:
-                self.metric = 'ROC AUC'
+                self.metric = 'AP'
                 self.loss_fn = F.binary_cross_entropy_with_logits
             else:
                 self.metric = 'accuracy'
@@ -177,7 +177,7 @@ class Dataset:
                 val_metric = (preds[self.val_idx] == self.targets[self.val_idx]).float().mean().item()
                 test_metric = (preds[self.test_idx] == self.targets[self.test_idx]).float().mean().item()
 
-            elif self.metric == 'ROC AUC':
+            elif self.metric == 'AP':
                 targets = self.targets.cpu().numpy()
                 preds = preds.cpu().numpy()
 
@@ -185,9 +185,9 @@ class Dataset:
                 val_idx = self.val_idx.cpu().numpy()
                 test_idx = self.test_idx.cpu().numpy()
 
-                train_metric = roc_auc_score(y_true=targets[train_idx], y_score=preds[train_idx]).item()
-                val_metric = roc_auc_score(y_true=targets[val_idx], y_score=preds[val_idx]).item()
-                test_metric = roc_auc_score(y_true=targets[test_idx], y_score=preds[test_idx]).item()
+                train_metric = average_precision_score(y_true=targets[train_idx], y_score=preds[train_idx]).item()
+                val_metric = average_precision_score(y_true=targets[val_idx], y_score=preds[val_idx]).item()
+                test_metric = average_precision_score(y_true=targets[test_idx], y_score=preds[test_idx]).item()
 
             else:
                 raise ValueError(f'Unknown metric: {self.metric}.')
