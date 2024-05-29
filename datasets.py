@@ -44,7 +44,7 @@ class Dataset:
             cat_features = OneHotEncoder(sparse_output=False, dtype=np.float32).fit_transform(cat_features)
 
         if use_node_embeddings:
-            node_embeddings = np.load(f'data/{name}/node_embeddings.npz')['node_embeds']
+            node_embeddings = np.load(f'data/{name}/node_embeddings.npy')
 
         train_mask_df = pd.read_csv(f'data/{name}/train_mask.csv', index_col=0)
         train_mask = train_mask_df.values.reshape(-1)
