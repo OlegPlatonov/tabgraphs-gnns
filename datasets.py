@@ -79,13 +79,12 @@ class Dataset:
                 targets_transform.fit(targets[train_idx][:, None])
                 targets[labeled_idx] = targets_transform.transform(targets[labeled_idx][:, None]).squeeze(1)
 
-        if info['task'] == 'classification':
-            classes = np.unique(targets)
-            # NaN target value is used for unlabeled nodes.
-            num_classes = len(classes) if not np.isnan(classes).any() else len(classes) - 1
-            num_targets = 1 if num_classes == 2 else num_classes
-            if num_classes > 2:
-                targets = targets.astype(np.int64)
+        if info['task'] == 'binary_classification':
+            num_targets = 1
+
+        elif info['task'] == 'multiclass_classification':
+            num_targets = info['num_classes']
+            targets = targets.astype(np.int64)
 
         elif info['task'] == 'regression':
             num_targets = num_regression_target_bins if regression_by_classification else 1
@@ -126,6 +125,7 @@ class Dataset:
 
         self.name = name
         self.task = info['task']
+        self.metric = info['metric']
         self.device = device
 
         self.graph = graph.to(device)
@@ -149,16 +149,13 @@ class Dataset:
         self.num_features_mask = num_features_mask.to(device)
         self.num_targets = num_targets
 
-        if info['task'] == 'classification':
-            if num_targets == 1:
-                self.metric = 'AP'
-                self.loss_fn = F.binary_cross_entropy_with_logits
-            else:
-                self.metric = 'accuracy'
-                self.loss_fn = F.cross_entropy
+        if info['task'] == 'binary_classification':
+            self.loss_fn = F.binary_cross_entropy_with_logits
+
+        elif info['task'] == 'multiclass_classification':
+            self.loss_fn = F.cross_entropy
 
         elif info['task'] == 'regression':
-            self.metric = 'R2'
             if regression_by_classification:
                 if use_soft_labels:
                     self.loss_fn = cross_entropy_with_soft_labels
