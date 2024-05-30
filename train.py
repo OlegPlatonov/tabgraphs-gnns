@@ -67,7 +67,7 @@ def get_args():
     parser.add_argument('--weight_decay', type=float, default=0)
 
     # training parameters
-    parser.add_argument('--lr', type=float, default=3e-5)
+    parser.add_argument('--lr', type=float, default=3e-4)
     parser.add_argument('--num_steps', type=int, default=1000)
     parser.add_argument('--num_warmup_steps', type=int, default=None,
                         help='If None, warmup_proportion is used instead.')
