@@ -46,14 +46,11 @@ class Dataset:
         if use_node_embeddings:
             node_embeddings = np.load(f'data/{name}/node_embeddings.npy')
 
-        train_mask_df = pd.read_csv(f'data/{name}/train_mask.csv', index_col=0)
-        train_mask = train_mask_df.values.reshape(-1)
+        train_mask = pd.read_csv(f'data/{name}/train_mask.csv', index_col=0).values.reshape(-1)
         train_idx = np.where(train_mask)[0]
-        val_mask_df = pd.read_csv(f'data/{name}/valid_mask.csv', index_col=0)
-        val_mask = val_mask_df.values.reshape(-1)
+        val_mask = pd.read_csv(f'data/{name}/valid_mask.csv', index_col=0).values.reshape(-1)
         val_idx = np.where(val_mask)[0]
-        test_mask_df = pd.read_csv(f'data/{name}/test_mask.csv', index_col=0)
-        test_mask = test_mask_df.values.reshape(-1)
+        test_mask = pd.read_csv(f'data/{name}/test_mask.csv', index_col=0).values.reshape(-1)
         test_idx = np.where(test_mask)[0]
 
         if info['task'] == 'regression':
