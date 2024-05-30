@@ -1,7 +1,6 @@
 import torch
 from torch import nn
 from dgl import ops
-from dgl.nn.functional import edge_softmax
 
 
 class ResidualModuleWrapper(nn.Module):
@@ -106,7 +105,7 @@ class GATModule(nn.Module):
         attn_scores_v = self.attn_linear_v(x)
         attn_scores = ops.u_add_v(graph, attn_scores_u, attn_scores_v)
         attn_scores = self.attn_act(attn_scores)
-        attn_probs = edge_softmax(graph, attn_scores)
+        attn_probs = ops.edge_softmax(graph, attn_scores)
 
         x = x.reshape(-1, self.head_dim, self.num_heads)
         x = ops.u_mul_e_sum(graph, x, attn_probs)
@@ -144,7 +143,7 @@ class GATSepModule(nn.Module):
         attn_scores_v = self.attn_linear_v(x)
         attn_scores = ops.u_add_v(graph, attn_scores_u, attn_scores_v)
         attn_scores = self.attn_act(attn_scores)
-        attn_probs = edge_softmax(graph, attn_scores)
+        attn_probs = ops.edge_softmax(graph, attn_scores)
 
         x = x.reshape(-1, self.head_dim, self.num_heads)
         message = ops.u_mul_e_sum(graph, x, attn_probs)
@@ -166,24 +165,18 @@ class TransformerAttentionModule(nn.Module):
         self.num_heads = num_heads
         self.head_dim = dim // num_heads
 
-        self.attn_query = nn.Linear(in_features=dim, out_features=dim)
-        self.attn_key = nn.Linear(in_features=dim, out_features=dim)
-        self.attn_value = nn.Linear(in_features=dim, out_features=dim)
+        self.attn_qkv_linear = nn.Linear(in_features=dim, out_features=dim * 3)
 
         self.output_linear = nn.Linear(in_features=dim, out_features=dim)
         self.dropout = nn.Dropout(p=dropout)
 
     def forward(self, graph, x):
-        queries = self.attn_query(x)
-        keys = self.attn_key(x)
-        values = self.attn_value(x)
+        qkvs = self.attn_qkv_linear(x)
+        qkvs = qkvs.reshape(-1, self.num_heads, self.head_dim * 3)
+        queries, keys, values = qkvs.split(split_size=(self.head_dim, self.head_dim, self.head_dim), dim=-1)
 
-        queries = queries.reshape(-1, self.num_heads, self.head_dim)
-        keys = keys.reshape(-1, self.num_heads, self.head_dim)
-        values = values.reshape(-1, self.num_heads, self.head_dim)
-
-        attn_scores = ops.u_dot_v(graph, queries, keys) / self.head_dim ** 0.5
-        attn_probs = edge_softmax(graph, attn_scores)
+        attn_scores = ops.u_dot_v(graph, keys, queries) / self.head_dim ** 0.5
+        attn_probs = ops.edge_softmax(graph, attn_scores)
 
         x = ops.u_mul_e_sum(graph, values, attn_probs)
         x = x.reshape(-1, self.dim)
@@ -203,24 +196,18 @@ class TransformerAttentionSepModule(nn.Module):
         self.num_heads = num_heads
         self.head_dim = dim // num_heads
 
-        self.attn_query = nn.Linear(in_features=dim, out_features=dim)
-        self.attn_key = nn.Linear(in_features=dim, out_features=dim)
-        self.attn_value = nn.Linear(in_features=dim, out_features=dim)
+        self.attn_qkv_linear = nn.Linear(in_features=dim, out_features=dim * 3)
 
         self.output_linear = nn.Linear(in_features=dim * 2, out_features=dim)
         self.dropout = nn.Dropout(p=dropout)
 
     def forward(self, graph, x):
-        queries = self.attn_query(x)
-        keys = self.attn_key(x)
-        values = self.attn_value(x)
+        qkvs = self.attn_qkv_linear(x)
+        qkvs = qkvs.reshape(-1, self.num_heads, self.head_dim * 3)
+        queries, keys, values = qkvs.split(split_size=(self.head_dim, self.head_dim, self.head_dim), dim=-1)
 
-        queries = queries.reshape(-1, self.num_heads, self.head_dim)
-        keys = keys.reshape(-1, self.num_heads, self.head_dim)
-        values = values.reshape(-1, self.num_heads, self.head_dim)
-
-        attn_scores = ops.u_dot_v(graph, queries, keys) / self.head_dim ** 0.5
-        attn_probs = edge_softmax(graph, attn_scores)
+        attn_scores = ops.u_dot_v(graph, keys, queries) / self.head_dim ** 0.5
+        attn_probs = ops.edge_softmax(graph, attn_scores)
 
         message = ops.u_mul_e_sum(graph, values, attn_probs)
         message = message.reshape(-1, self.dim)
