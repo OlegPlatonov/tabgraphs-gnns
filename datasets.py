@@ -17,9 +17,9 @@ class Dataset:
         'min-max-scaler': MinMaxScaler(),
         'robust-scaler': RobustScaler(unit_variance=True),
         'power-transform-yeo-johnson': PowerTransformer(method='yeo-johnson', standardize=True),
-        'quantile-transform-normal': QuantileTransformer(output_distribution='normal', subsample=1_000_000,
+        'quantile-transform-normal': QuantileTransformer(output_distribution='normal', subsample=1_000_000_000,
                                                          random_state=0),
-        'quantile-transform-uniform': QuantileTransformer(output_distribution='uniform', subsample=1_000_000,
+        'quantile-transform-uniform': QuantileTransformer(output_distribution='uniform', subsample=1_000_000_000,
                                                           random_state=0)
     }
 
