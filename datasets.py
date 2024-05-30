@@ -81,7 +81,8 @@ class Dataset:
 
         if info['task'] == 'classification':
             classes = np.unique(targets)
-            num_classes = len(classes) if -1 not in classes else len(classes) - 1   # -1 is used for unlabeled nodes
+            # NaN target value is used for unlabeled nodes.
+            num_classes = len(classes) if not np.isnan(classes).any() else len(classes) - 1
             num_targets = 1 if num_classes == 2 else num_classes
             if num_classes > 2:
                 targets = targets.astype(np.int64)
