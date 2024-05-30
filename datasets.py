@@ -110,7 +110,7 @@ class Dataset:
         edges = torch.from_numpy(edges)
         graph = dgl.graph((edges[:, 0], edges[:, 1]), num_nodes=len(features), idtype=torch.int)
 
-        if 'maps' in name:
+        if info['graph_is_directed']:
             graph = dgl.to_bidirected(graph)
 
         if add_self_loops:
