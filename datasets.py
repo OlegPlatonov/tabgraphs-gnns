@@ -165,29 +165,25 @@ class Dataset:
             raise ValueError(f'Unknown task: {info["task"]}.')
 
     def compute_metrics(self, preds):
-        if self.task == 'classification':
-            if self.metric == 'accuracy':
-                preds = preds.argmax(axis=1)
-                train_metric = (preds[self.train_idx] == self.targets[self.train_idx]).float().mean().item()
-                val_metric = (preds[self.val_idx] == self.targets[self.val_idx]).float().mean().item()
-                test_metric = (preds[self.test_idx] == self.targets[self.test_idx]).float().mean().item()
+        if self.metric == 'accuracy':
+            preds = preds.argmax(axis=1)
+            train_metric = (preds[self.train_idx] == self.targets[self.train_idx]).float().mean().item()
+            val_metric = (preds[self.val_idx] == self.targets[self.val_idx]).float().mean().item()
+            test_metric = (preds[self.test_idx] == self.targets[self.test_idx]).float().mean().item()
 
-            elif self.metric == 'AP':
-                targets = self.targets.cpu().numpy()
-                preds = preds.cpu().numpy()
+        elif self.metric == 'AP':
+            targets = self.targets.cpu().numpy()
+            preds = preds.cpu().numpy()
 
-                train_idx = self.train_idx.cpu().numpy()
-                val_idx = self.val_idx.cpu().numpy()
-                test_idx = self.test_idx.cpu().numpy()
+            train_idx = self.train_idx.cpu().numpy()
+            val_idx = self.val_idx.cpu().numpy()
+            test_idx = self.test_idx.cpu().numpy()
 
-                train_metric = average_precision_score(y_true=targets[train_idx], y_score=preds[train_idx]).item()
-                val_metric = average_precision_score(y_true=targets[val_idx], y_score=preds[val_idx]).item()
-                test_metric = average_precision_score(y_true=targets[test_idx], y_score=preds[test_idx]).item()
+            train_metric = average_precision_score(y_true=targets[train_idx], y_score=preds[train_idx]).item()
+            val_metric = average_precision_score(y_true=targets[val_idx], y_score=preds[val_idx]).item()
+            test_metric = average_precision_score(y_true=targets[test_idx], y_score=preds[test_idx]).item()
 
-            else:
-                raise ValueError(f'Unknown metric: {self.metric}.')
-
-        elif self.task == 'regression':
+        elif self.metric == 'R2':
             if self.regression_by_classification:
                 targets_orig = self.targets_orig.cpu().numpy()
                 bin_idx = preds.argmax(axis=1)
@@ -206,7 +202,7 @@ class Dataset:
             test_metric = r2_score(y_true=targets_orig[test_idx], y_pred=preds_orig[test_idx]).item()
 
         else:
-            raise ValueError(f'Unknown task: {self.task}.')
+            raise ValueError(f'Unknown metric: {self.metric}.')
 
         metrics = {
             f'train {self.metric}': train_metric,
