@@ -6,6 +6,7 @@ from torch.nn import functional as F
 import dgl
 from sklearn.preprocessing import (FunctionTransformer, StandardScaler, MinMaxScaler, RobustScaler, PowerTransformer,
                                    QuantileTransformer, OneHotEncoder, KBinsDiscretizer)
+from sklearn.impute import SimpleImputer
 from sklearn.metrics import average_precision_score, r2_score
 from utils import cross_entropy_with_soft_labels, get_soft_labels
 
@@ -38,6 +39,9 @@ class Dataset:
         targets = features_df[info['target_name']].values.astype(np.float32)
 
         if num_features.shape[1] > 0:
+            if 'has_nans_in_features' in info and info['has_nans_in_features']:
+                num_features = SimpleImputer(strategy='most_frequent').fit_transform(num_features)
+
             num_features = self.transforms[num_features_transform].fit_transform(num_features)
 
         if cat_features.shape[1] > 0:
@@ -90,7 +94,7 @@ class Dataset:
             raise ValueError(f'Unknown task: {info["task"]}.')
 
         edges_df = pd.read_csv(f'data/{name}/edgelist.csv')
-        edges = edges_df.values
+        edges = edges_df.values[:, :2]
 
         features = np.concatenate([num_features, bin_features, cat_features], axis=1)
         if use_node_embeddings:
