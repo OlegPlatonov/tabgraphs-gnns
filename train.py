@@ -14,13 +14,10 @@ def get_args():
 
     parser.add_argument('--name', type=str, default=None, help='Experiment name. If None, model name is used.')
     parser.add_argument('--save_dir', type=str, default='experiments', help='Base directory for saving information.')
-    parser.add_argument('--dataset', type=str, default='vk-users',
-                        choices=['web-fraud', 'web-traffic', 'vk-users-r', 'vk-users-c', 'hm-products',
-                                 'hm-products-group', 'avazu-devices', 'avazu-devices-v2', 'yp-maps', 'yp-maps-v2',
-                                 'yp-maps-large', 'yp-fraud', 'yp-fraud-v2', 'yp-fraud-v3', 'yp-fraud-v4',
-                                 'yp-fraud-v5', 'yp-fraud-v6', 'yp-games', 'yp-games-v2', 'yp-games-c',
-                                 'wb-forecast-v1', 'amazon-users-p', 'amazon-users-s', 'amazon-users-v', 'tolokers-tab',
-                                 'questions-tab', 'socnet-recs'])
+    parser.add_argument('--dataset', type=str, default='tolokers-tab',
+                        choices=['tolokers-tab', 'questions-tab', 'city-reviews', 'broeser-games', 'hm-categories',
+                                 'web-fraud', 'city-roads-M', 'city-roads-L', 'avazu-devices', 'hm-prices',
+                                 'web-traffic'])
 
     # numerical features preprocessing
     parser.add_argument('--numerical_features_imputation_strategy', type=str, default='most_frequent',
