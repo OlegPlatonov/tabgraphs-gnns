@@ -40,7 +40,7 @@ class Dataset:
         targets = features_df[info['target_name']].values.astype(np.float32)
 
         if num_features.shape[1] > 0:
-            if info['num_features_have_nans']:
+            if info['has_nans_in_num_features']:
                 num_features = SimpleImputer(strategy=num_features_imputation_strategy).fit_transform(num_features)
 
             num_features = self.transforms[num_features_transform].fit_transform(num_features)
