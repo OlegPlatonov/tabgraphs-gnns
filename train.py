@@ -19,6 +19,12 @@ def get_args():
                                  'web-fraud', 'city-roads-M', 'city-roads-L', 'avazu-devices', 'hm-prices',
                                  'web-traffic'])
 
+    # additional features
+    parser.add_argument('--use_node_embeddings', default=False, action='store_true',
+                        help='In our experiments, DeepWalk node embeddings are only used for the city-roads-M and '
+                             'city-roads-L datasets, and we only provide these embeddings for these datasets, but you '
+                             'can compute some node embeddings for other datasets if you want to.')
+
     # numerical features preprocessing
     parser.add_argument('--numerical_features_imputation_strategy', type=str, default='most_frequent',
                         choices=['mean', 'median', 'most_frequent'],
@@ -34,9 +40,6 @@ def get_args():
     parser.add_argument('--plr_frequency_scale', type=float, default=0.01)
     parser.add_argument('--plr_embedding_dim', type=int, default=16)
     parser.add_argument('--plr_lite', default=False, action='store_true')
-
-    # additional features
-    parser.add_argument('--use_node_embeddings', default=False, action='store_true')
 
     # regression options
     parser.add_argument('--regression_by_classification', default=False, action='store_true',
