@@ -24,7 +24,8 @@ class Dataset:
                                                           random_state=0)
     }
 
-    def __init__(self, name, add_self_loops=False, num_features_transform='none', use_node_embeddings=False,
+    def __init__(self, name, add_self_loops=False, use_node_embeddings=False,
+                 num_features_imputation_strategy='most_frequent', num_features_transform='none',
                  regression_by_classification=False, num_regression_target_bins=50,
                  regression_target_binning_strategy='uniform', use_soft_labels=False,
                  regression_target_transform='none', device='cpu'):
@@ -39,8 +40,8 @@ class Dataset:
         targets = features_df[info['target_name']].values.astype(np.float32)
 
         if num_features.shape[1] > 0:
-            if 'has_nans_in_features' in info and info['has_nans_in_features']:
-                num_features = SimpleImputer(strategy='most_frequent').fit_transform(num_features)
+            if info['num_features_have_nans']:
+                num_features = SimpleImputer(strategy=num_features_imputation_strategy).fit_transform(num_features)
 
             num_features = self.transforms[num_features_transform].fit_transform(num_features)
 

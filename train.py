@@ -23,6 +23,9 @@ def get_args():
                                  'questions-tab', 'socnet-recs'])
 
     # numerical features preprocessing
+    parser.add_argument('--numerical_features_imputation_strategy', type=str, default='most_frequent',
+                        choices=['mean', 'median', 'most_frequent'],
+                        help='Only used for datasets that have NaNs in numerical features.')
     parser.add_argument('--numerical_features_transform', type=str, default='quantile-transform-normal',
                         choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
                                  'power-transform-yeo-johnson', 'quantile-transform-normal',
@@ -120,8 +123,9 @@ def main():
 
     dataset = Dataset(name=args.dataset,
                       add_self_loops=(args.model in ['GCN', 'GAT', 'GT']),
-                      num_features_transform=args.numerical_features_transform,
                       use_node_embeddings=args.use_node_embeddings,
+                      num_features_imputation_strategy=args.numerical_features_imputation_strategy,
+                      num_features_transform=args.numerical_features_transform,
                       regression_by_classification=args.regression_by_classification,
                       num_regression_target_bins=args.num_regression_target_bins,
                       regression_target_binning_strategy=args.regression_target_binning_strategy,
