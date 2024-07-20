@@ -17,7 +17,7 @@ def get_args():
     parser.add_argument('--dataset', type=str, default='tolokers-tab',
                         choices=['tolokers-tab', 'questions-tab', 'city-reviews', 'broeser-games', 'hm-categories',
                                  'web-fraud', 'city-roads-M', 'city-roads-L', 'avazu-devices', 'hm-prices',
-                                 'web-traffic'])
+                                 'web-traffic', 'yp-maps-v3', 'yp-maps-large-v2'])
 
     # additional features
     parser.add_argument('--use_node_embeddings', default=False, action='store_true',
