@@ -19,13 +19,13 @@ def get_args():
                                  'web-fraud', 'city-roads-M', 'city-roads-L', 'avazu-devices', 'hm-prices',
                                  'web-traffic'])
 
-    # additional features
+    # Additional node features.
     parser.add_argument('--use_node_embeddings', default=False, action='store_true',
                         help='In our experiments, DeepWalk node embeddings are only used for the city-roads-M and '
                              'city-roads-L datasets, and we only provide these embeddings for these datasets, but you '
                              'can compute some node embeddings for other datasets if you want to.')
 
-    # numerical features preprocessing
+    # Numerical features preprocessing.
     parser.add_argument('--numerical_features_imputation_strategy', type=str, default='most_frequent',
                         choices=['mean', 'median', 'most_frequent'],
                         help='Only used for datasets that have NaNs in numerical features.')
@@ -34,14 +34,19 @@ def get_args():
                                  'power-transform-yeo-johnson', 'quantile-transform-normal',
                                  'quantile-transform-uniform'])
 
-    # PLR embeddings for numerical features
+    # PLR embeddings for numerical features.
     parser.add_argument('--plr', default=False, action='store_true', help='Use PLR embeddings for numerical features.')
     parser.add_argument('--plr_num_frequencies', type=int, default=48)
     parser.add_argument('--plr_frequency_scale', type=float, default=0.01)
     parser.add_argument('--plr_embedding_dim', type=int, default=16)
     parser.add_argument('--plr_lite', default=False, action='store_true')
 
-    # regression options
+    # Regression options.
+    parser.add_argument('--regression_target_transform', type=str, default='none',
+                        choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
+                                 'power-transform-yeo-johnson', 'quantile-transform-normal',
+                                 'quantile-transform-uniform'],
+                        help='Only used if regression_by_classification is False.')
     parser.add_argument('--regression_by_classification', default=False, action='store_true',
                         help='Convert regression task to classification by binning targets.')
     parser.add_argument('--num_regression_target_bins', type=int, default=50,
@@ -51,14 +56,9 @@ def get_args():
                         help='Only used if regression_by_classification is True.')
     parser.add_argument('--use_soft_labels', default=False, action='store_true',
                         help='Only used if regression_by_classification is True.')
-    parser.add_argument('--regression_target_transform', type=str, default='none',
-                        choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
-                                 'power-transform-yeo-johnson', 'quantile-transform-normal',
-                                 'quantile-transform-uniform'],
-                        help='Only used if regression_by_classification is False.')
 
-    # model architecture
-    parser.add_argument('--model', type=str, default='GT-sep',
+    # Model architecture.
+    parser.add_argument('--model', type=str, default='SAGE',
                         choices=['ResNet', 'GCN', 'SAGE', 'GAT', 'GAT-sep', 'GT', 'GT-sep'])
     parser.add_argument('--num_layers', type=int, default=3)
     parser.add_argument('--hidden_dim', type=int, default=512)
