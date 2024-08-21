@@ -18,9 +18,9 @@ class ResidualModuleWrapper(nn.Module):
 
 
 class FeedForwardModule(nn.Module):
-    def __init__(self, dim, hidden_dim_multiplier, dropout, input_dim_multiplier=1, **kwargs):
+    def __init__(self, dim, dropout, num_inputs=1, hidden_dim_multiplier=1, **kwargs):
         super().__init__()
-        input_dim = int(dim * input_dim_multiplier)
+        input_dim = int(dim * num_inputs)
         hidden_dim = int(dim * hidden_dim_multiplier)
         self.linear_1 = nn.Linear(in_features=input_dim, out_features=hidden_dim)
         self.dropout_1 = nn.Dropout(p=dropout)
