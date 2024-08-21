@@ -15,9 +15,9 @@ def get_args():
     parser.add_argument('--name', type=str, default=None, help='Experiment name. If None, model name is used.')
     parser.add_argument('--save_dir', type=str, default='experiments', help='Base directory for saving information.')
     parser.add_argument('--dataset', type=str, default='tolokers-tab',
-                        choices=['tolokers-tab', 'questions-tab', 'city-reviews', 'broeser-games', 'hm-categories',
+                        choices=['tolokers-tab', 'questions-tab', 'city-reviews', 'browser-games', 'hm-categories',
                                  'web-fraud', 'city-roads-M', 'city-roads-L', 'avazu-devices', 'hm-prices',
-                                 'web-traffic', 'yp-maps-v3', 'yp-maps-large-v2'])
+                                 'web-traffic'])
 
     # additional features
     parser.add_argument('--use_node_embeddings', default=False, action='store_true',
