@@ -6,13 +6,13 @@ channels:
 dependencies:
   - python=3.11
   - setuptools=68
-  - tqdm
-  - pyyaml
-  - pydantic
-  - numpy
-  - pandas
-  - scikit-learn
+  - tqdm=4.66
+  - pyyaml=6
+  - pydantic=2.5
+  - numpy=1.26
+  - pandas=2.2
+  - scikit-learn=1.5
   - pytorch=2.3
   - pytorch-cuda=12.1
   - torchdata=0.7
-  - dgl
+  - dgl=2.3
