@@ -22,7 +22,7 @@ class Model(nn.Module):
         'BatchNorm': nn.BatchNorm1d
     }
 
-    def __init__(self, model_name, num_layers, features_dim, hidden_dim, output_dim, hidden_dim_multiplier, num_heads,
+    def __init__(self, model_name, num_layers, features_dim, hidden_dim, output_dim, num_heads, hidden_dim_multiplier,
                  normalization, dropout, use_plr, num_features_mask, plr_num_frequencies, plr_frequency_scale,
                  plr_embedding_dim, use_plr_lite):
         super().__init__()

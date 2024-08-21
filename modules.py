@@ -18,7 +18,7 @@ class ResidualModuleWrapper(nn.Module):
 
 
 class FeedForwardModule(nn.Module):
-    def __init__(self, dim, dropout, num_inputs=1, hidden_dim_multiplier=1, **kwargs):
+    def __init__(self, dim, num_inputs=1, hidden_dim_multiplier=1, dropout=0, **kwargs):
         super().__init__()
         input_dim = int(dim * num_inputs)
         hidden_dim = int(dim * hidden_dim_multiplier)
@@ -39,7 +39,7 @@ class FeedForwardModule(nn.Module):
 
 
 class GCNModule(nn.Module):
-    def __init__(self, dim, hidden_dim_multiplier, dropout, **kwargs):
+    def __init__(self, dim, hidden_dim_multiplier=1, dropout=0, **kwargs):
         super().__init__()
         self.feed_forward_module = FeedForwardModule(dim=dim,
                                                      hidden_dim_multiplier=hidden_dim_multiplier,
@@ -58,7 +58,7 @@ class GCNModule(nn.Module):
 
 
 class SAGEModule(nn.Module):
-    def __init__(self, dim, hidden_dim_multiplier, dropout, **kwargs):
+    def __init__(self, dim, hidden_dim_multiplier=1, dropout=0, **kwargs):
         super().__init__()
         self.feed_forward_module = FeedForwardModule(dim=dim,
                                                      num_inputs=2,
@@ -80,7 +80,7 @@ def _check_dim_and_num_heads_consistency(dim, num_heads):
 
 
 class GATModule(nn.Module):
-    def __init__(self, dim, hidden_dim_multiplier, num_heads, dropout, **kwargs):
+    def __init__(self, dim, num_heads, hidden_dim_multiplier=1, dropout=0, **kwargs):
         super().__init__()
 
         _check_dim_and_num_heads_consistency(dim, num_heads)
@@ -117,7 +117,7 @@ class GATModule(nn.Module):
 
 
 class GATSepModule(nn.Module):
-    def __init__(self, dim, hidden_dim_multiplier, num_heads, dropout, **kwargs):
+    def __init__(self, dim, num_heads, hidden_dim_multiplier=1, dropout=0, **kwargs):
         super().__init__()
 
         _check_dim_and_num_heads_consistency(dim, num_heads)
@@ -157,7 +157,7 @@ class GATSepModule(nn.Module):
 
 
 class TransformerAttentionModule(nn.Module):
-    def __init__(self, dim, num_heads, dropout, **kwargs):
+    def __init__(self, dim, num_heads, dropout=0, **kwargs):
         super().__init__()
 
         _check_dim_and_num_heads_consistency(dim, num_heads)
@@ -189,7 +189,7 @@ class TransformerAttentionModule(nn.Module):
 
 
 class TransformerAttentionSepModule(nn.Module):
-    def __init__(self, dim, num_heads, dropout, **kwargs):
+    def __init__(self, dim, num_heads, dropout=0, **kwargs):
         super().__init__()
 
         _check_dim_and_num_heads_consistency(dim, num_heads)

@@ -62,8 +62,8 @@ def get_args():
                         choices=['ResNet', 'GCN', 'SAGE', 'GAT', 'GAT-sep', 'GT', 'GT-sep'])
     parser.add_argument('--num_layers', type=int, default=3)
     parser.add_argument('--hidden_dim', type=int, default=512)
-    parser.add_argument('--hidden_dim_multiplier', type=float, default=1)
     parser.add_argument('--num_heads', type=int, default=4)
+    parser.add_argument('--hidden_dim_multiplier', type=float, default=1)
     parser.add_argument('--normalization', type=str, default='LayerNorm', choices=['none', 'LayerNorm', 'BatchNorm'])
 
     # regularization
@@ -141,8 +141,8 @@ def main():
                       features_dim=dataset.features_dim,
                       hidden_dim=args.hidden_dim,
                       output_dim=dataset.num_targets,
-                      hidden_dim_multiplier=args.hidden_dim_multiplier,
                       num_heads=args.num_heads,
+                      hidden_dim_multiplier=args.hidden_dim_multiplier,
                       normalization=args.normalization,
                       dropout=args.dropout,
                       use_plr=args.plr,
