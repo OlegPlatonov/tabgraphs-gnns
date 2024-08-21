@@ -113,7 +113,7 @@ class Dataset:
                 bin_preds = torch.from_numpy(bin_preds)
 
         edges = torch.from_numpy(edges)
-        graph = dgl.graph((edges[:, 0], edges[:, 1]), num_nodes=len(features), idtype=torch.int)
+        graph = dgl.graph((edges[:, 0], edges[:, 1]), num_nodes=len(features), idtype=torch.int32)
 
         if info['graph_is_directed']:
             graph = dgl.to_bidirected(graph)
