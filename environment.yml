@@ -2,14 +2,13 @@ name: gnn
 channels:
   - pytorch
   - nvidia
-  - dglteam/label/th23_cu118
+  - dglteam/label/th23_cu121
 dependencies:
   - tqdm
   - pyyaml
   - numpy
   - pandas
   - scikit-learn
-  - cudatoolkit=11.8
-  - pytorch
-  - pytorch-cuda=11.8
+  - pytorch=2.3
+  - pytorch-cuda=12.1
   - dgl
