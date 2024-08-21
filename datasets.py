@@ -202,9 +202,9 @@ class Dataset:
             val_idx = self.val_idx.cpu().numpy()
             test_idx = self.test_idx.cpu().numpy()
 
-            train_metric = r2_score(y_true=targets_orig[train_idx], y_pred=preds_orig[train_idx]).item()
-            val_metric = r2_score(y_true=targets_orig[val_idx], y_pred=preds_orig[val_idx]).item()
-            test_metric = r2_score(y_true=targets_orig[test_idx], y_pred=preds_orig[test_idx]).item()
+            train_metric = r2_score(y_true=targets_orig[train_idx], y_pred=preds_orig[train_idx])
+            val_metric = r2_score(y_true=targets_orig[val_idx], y_pred=preds_orig[val_idx])
+            test_metric = r2_score(y_true=targets_orig[test_idx], y_pred=preds_orig[test_idx])
 
         else:
             raise ValueError(f'Unknown metric: {self.metric}.')
