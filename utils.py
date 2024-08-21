@@ -130,6 +130,7 @@ def get_lr_scheduler_with_warmup(optimizer, num_warmup_steps=None, num_steps=Non
 
 
 def cross_entropy_with_soft_labels(input, target):
+    """Can be used for regression by classification."""
     log_probs = F.log_softmax(input=input, dim=1)
     loss = - (log_probs * target).sum(axis=1).mean()
 
