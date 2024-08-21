@@ -64,7 +64,7 @@ def get_args():
     parser.add_argument('--hidden_dim', type=int, default=512)
     parser.add_argument('--hidden_dim_multiplier', type=float, default=1)
     parser.add_argument('--num_heads', type=int, default=4)
-    parser.add_argument('--normalization', type=str, default='LayerNorm', choices=['None', 'LayerNorm', 'BatchNorm'])
+    parser.add_argument('--normalization', type=str, default='LayerNorm', choices=['none', 'LayerNorm', 'BatchNorm'])
 
     # regularization
     parser.add_argument('--dropout', type=float, default=0.2)
