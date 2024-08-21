@@ -4,6 +4,7 @@ channels:
   - nvidia
   - dglteam/label/th23_cu121
 dependencies:
+  - python=3.11
   - setuptools=68
   - tqdm
   - pyyaml
@@ -13,5 +14,5 @@ dependencies:
   - scikit-learn
   - pytorch=2.3
   - pytorch-cuda=12.1
-  - torchdata
+  - torchdata=0.7
   - dgl
