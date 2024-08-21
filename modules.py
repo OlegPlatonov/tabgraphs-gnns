@@ -164,6 +164,7 @@ class TransformerAttentionModule(nn.Module):
         self.dim = dim
         self.num_heads = num_heads
         self.head_dim = dim // num_heads
+        self.attn_scores_multiplier = 1 / torch.tensor(self.head_dim).sqrt()
 
         self.attn_qkv_linear = nn.Linear(in_features=dim, out_features=dim * 3)
 
@@ -175,7 +176,7 @@ class TransformerAttentionModule(nn.Module):
         qkvs = qkvs.reshape(-1, self.num_heads, self.head_dim * 3)
         queries, keys, values = qkvs.split(split_size=(self.head_dim, self.head_dim, self.head_dim), dim=-1)
 
-        attn_scores = ops.u_dot_v(graph, keys, queries) / self.head_dim ** 0.5
+        attn_scores = ops.u_dot_v(graph, keys, queries) * self.attn_scores_multiplier
         attn_probs = ops.edge_softmax(graph, attn_scores)
 
         x = ops.u_mul_e_sum(graph, values, attn_probs)
@@ -195,6 +196,7 @@ class TransformerAttentionSepModule(nn.Module):
         self.dim = dim
         self.num_heads = num_heads
         self.head_dim = dim // num_heads
+        self.attn_scores_multiplier = 1 / torch.tensor(self.head_dim).sqrt()
 
         self.attn_qkv_linear = nn.Linear(in_features=dim, out_features=dim * 3)
 
@@ -206,7 +208,7 @@ class TransformerAttentionSepModule(nn.Module):
         qkvs = qkvs.reshape(-1, self.num_heads, self.head_dim * 3)
         queries, keys, values = qkvs.split(split_size=(self.head_dim, self.head_dim, self.head_dim), dim=-1)
 
-        attn_scores = ops.u_dot_v(graph, keys, queries) / self.head_dim ** 0.5
+        attn_scores = ops.u_dot_v(graph, keys, queries) * self.attn_scores_multiplier
         attn_probs = ops.edge_softmax(graph, attn_scores)
 
         message = ops.u_mul_e_sum(graph, values, attn_probs)
