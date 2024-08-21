@@ -5,31 +5,29 @@ from modules import (ResidualModuleWrapper, FeedForwardModule, GCNModule, SAGEMo
 from plr_embeddings import PLREmbeddings
 
 
-MODULES = {
-    'ResNet': [FeedForwardModule],
-    'GCN': [GCNModule],
-    'SAGE': [SAGEModule],
-    'GAT': [GATModule],
-    'GAT-sep': [GATSepModule],
-    'GT': [TransformerAttentionModule, FeedForwardModule],
-    'GT-sep': [TransformerAttentionSepModule, FeedForwardModule]
-}
-
-
-NORMALIZATION = {
-    'none': nn.Identity,
-    'LayerNorm': nn.LayerNorm,
-    'BatchNorm': nn.BatchNorm1d
-}
-
-
 class Model(nn.Module):
+    modules = {
+        'ResNet': [FeedForwardModule],
+        'GCN': [GCNModule],
+        'SAGE': [SAGEModule],
+        'GAT': [GATModule],
+        'GAT-sep': [GATSepModule],
+        'GT': [TransformerAttentionModule, FeedForwardModule],
+        'GT-sep': [TransformerAttentionSepModule, FeedForwardModule]
+    }
+
+    normalization = {
+        'none': nn.Identity,
+        'LayerNorm': nn.LayerNorm,
+        'BatchNorm': nn.BatchNorm1d
+    }
+
     def __init__(self, model_name, num_layers, features_dim, hidden_dim, output_dim, hidden_dim_multiplier, num_heads,
                  normalization, dropout, use_plr, num_features_mask, plr_num_frequencies, plr_frequency_scale,
                  plr_embedding_dim, use_plr_lite):
         super().__init__()
 
-        normalization = NORMALIZATION[normalization]
+        normalization = self.normalization[normalization]
 
         self.use_plr = use_plr
         if use_plr:
@@ -48,7 +46,7 @@ class Model(nn.Module):
 
         self.residual_modules = nn.ModuleList()
         for _ in range(num_layers):
-            for module in MODULES[model_name]:
+            for module in self.modules[model_name]:
                 residual_module = ResidualModuleWrapper(module=module,
                                                         normalization=normalization,
                                                         dim=hidden_dim,
