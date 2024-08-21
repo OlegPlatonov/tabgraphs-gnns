@@ -61,7 +61,7 @@ class SAGEModule(nn.Module):
     def __init__(self, dim, hidden_dim_multiplier, dropout, **kwargs):
         super().__init__()
         self.feed_forward_module = FeedForwardModule(dim=dim,
-                                                     input_dim_multiplier=2,
+                                                     num_inputs=2,
                                                      hidden_dim_multiplier=hidden_dim_multiplier,
                                                      dropout=dropout)
 
@@ -132,7 +132,7 @@ class GATSepModule(nn.Module):
         self.attn_act = nn.LeakyReLU(negative_slope=0.2)
 
         self.feed_forward_module = FeedForwardModule(dim=dim,
-                                                     input_dim_multiplier=2,
+                                                     num_inputs=2,
                                                      hidden_dim_multiplier=hidden_dim_multiplier,
                                                      dropout=dropout)
 
