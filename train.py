@@ -22,8 +22,10 @@ def get_args():
     # Additional node features.
     parser.add_argument('--use_node_embeddings', default=False, action='store_true',
                         help='In our experiments, DeepWalk node embeddings are only used for the city-roads-M and '
-                             'city-roads-L datasets, and we only provide these embeddings for these datasets, but you '
-                             'can compute some node embeddings for other datasets if you want to.')
+                             'city-roads-L datasets (where they turned out to be very beneficial), and we only provide'
+                             'these embeddings for these datasets, but you can compute some node embeddings for other'
+                             'datasets if you want to (in this case, store them in node_embeddings.npz file in the'
+                             'respective dataset folder).')
 
     # Numerical features preprocessing.
     parser.add_argument('--numerical_features_imputation_strategy', type=str, default='most_frequent',
