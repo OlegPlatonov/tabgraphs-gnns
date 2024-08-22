@@ -26,9 +26,8 @@ class Dataset:
 
     def __init__(self, name, add_self_loops=False, use_node_embeddings=False,
                  num_features_imputation_strategy='most_frequent', num_features_transform='none',
-                 regression_by_classification=False, num_regression_target_bins=50,
-                 regression_target_binning_strategy='uniform', use_soft_labels=False,
-                 regression_target_transform='none', device='cpu'):
+                 regression_target_transform='none', regression_by_classification=False, num_regression_target_bins=50,
+                 regression_target_binning_strategy='uniform', use_soft_labels=False, device='cpu'):
         print('Preparing data...')
         with open(f'data/{name}/info.yaml', 'r') as file:
             info = yaml.safe_load(file)
