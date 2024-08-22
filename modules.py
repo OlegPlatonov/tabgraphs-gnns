@@ -57,7 +57,7 @@ class GCNModule(nn.Module):
         return x
 
 
-class SAGEModule(nn.Module):
+class GraphSAGEModule(nn.Module):
     def __init__(self, dim, hidden_dim_multiplier=1, dropout=0, **kwargs):
         super().__init__()
         self.feed_forward_module = FeedForwardModule(dim=dim,

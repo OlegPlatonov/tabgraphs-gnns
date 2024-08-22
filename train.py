@@ -60,8 +60,8 @@ def get_args():
                         help='Only used if regression_by_classification is True.')
 
     # Model architecture.
-    parser.add_argument('--model', type=str, default='SAGE',
-                        choices=['ResNet', 'GCN', 'SAGE', 'GAT', 'GAT-sep', 'GT', 'GT-sep'])
+    parser.add_argument('--model', type=str, default='GraphSAGE',
+                        choices=['ResNet', 'GCN', 'GraphSAGE', 'GAT', 'GAT-sep', 'GT', 'GT-sep'])
     parser.add_argument('--num_layers', type=int, default=3)
     parser.add_argument('--hidden_dim', type=int, default=512)
     parser.add_argument('--num_heads', type=int, default=4)

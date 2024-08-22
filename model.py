@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from modules import (ResidualModuleWrapper, FeedForwardModule, GCNModule, SAGEModule, GATModule, GATSepModule,
+from modules import (ResidualModuleWrapper, FeedForwardModule, GCNModule, GraphSAGEModule, GATModule, GATSepModule,
                      TransformerAttentionModule, TransformerAttentionSepModule)
 from plr_embeddings import PLREmbeddings
 
@@ -9,7 +9,7 @@ class Model(nn.Module):
     modules = {
         'ResNet': [FeedForwardModule],
         'GCN': [GCNModule],
-        'SAGE': [SAGEModule],
+        'GraphSAGE': [GraphSAGEModule],
         'GAT': [GATModule],
         'GAT-sep': [GATSepModule],
         'GT': [TransformerAttentionModule, FeedForwardModule],
