@@ -81,15 +81,21 @@ class Dataset:
                 targets[labeled_idx] = targets_transform.transform(targets[labeled_idx][:, None]).squeeze(1)
 
         if info['task'] == 'binary_classification':
-            num_targets = 1
-
+            targets_dim = 1
+            loss_fn = F.binary_cross_entropy_with_logits
         elif info['task'] == 'multiclass_classification':
-            num_targets = info['num_classes']
+            targets_dim = info['num_classes']
             targets = targets.astype(np.int64)
-
+            loss_fn = F.cross_entropy
         elif info['task'] == 'regression':
-            num_targets = num_regression_target_bins if regression_by_classification else 1
-
+            targets_dim = num_regression_target_bins if regression_by_classification else 1
+            if regression_by_classification:
+                if use_soft_labels:
+                    loss_fn = cross_entropy_with_soft_labels
+                else:
+                    loss_fn = F.cross_entropy
+            else:
+                loss_fn = F.mse_loss
         else:
             raise ValueError(f'Unknown task: {info["task"]}.')
 
@@ -131,6 +137,7 @@ class Dataset:
 
         self.graph = graph.to(device)
         self.features = features.to(device)
+        self.num_features_mask = num_features_mask.to(device)
         self.targets = targets.to(device)
         if info['task'] == 'regression':
             self.targets_orig = targets_orig.to(device)
@@ -142,31 +149,14 @@ class Dataset:
             else:
                 self.targets_transform = targets_transform
 
+        self.features_dim = features.shape[1]
+        self.targets_dim = targets_dim
+
+        self.loss_fn = loss_fn
+
         self.train_idx = train_idx.to(device)
         self.val_idx = val_idx.to(device)
         self.test_idx = test_idx.to(device)
-
-        self.features_dim = features.shape[1]
-        self.num_features_mask = num_features_mask.to(device)
-        self.num_targets = num_targets
-
-        if info['task'] == 'binary_classification':
-            self.loss_fn = F.binary_cross_entropy_with_logits
-
-        elif info['task'] == 'multiclass_classification':
-            self.loss_fn = F.cross_entropy
-
-        elif info['task'] == 'regression':
-            if regression_by_classification:
-                if use_soft_labels:
-                    self.loss_fn = cross_entropy_with_soft_labels
-                else:
-                    self.loss_fn = F.cross_entropy
-            else:
-                self.loss_fn = F.mse_loss
-
-        else:
-            raise ValueError(f'Unknown task: {info["task"]}.')
 
     def compute_metrics(self, preds):
         if self.metric == 'accuracy':
@@ -188,13 +178,12 @@ class Dataset:
             test_metric = average_precision_score(y_true=targets[test_idx], y_score=preds[test_idx]).item()
 
         elif self.metric == 'R2':
+            targets_orig = self.targets_orig.cpu().numpy()
+
             if self.regression_by_classification:
-                targets_orig = self.targets_orig.cpu().numpy()
                 bin_idx = preds.argmax(axis=1)
                 preds_orig = self.bin_preds[bin_idx].cpu().numpy()
-
             else:
-                targets_orig = self.targets_orig.cpu().numpy()
                 preds_orig = self.targets_transform.inverse_transform(preds.cpu().numpy()[:, None]).squeeze(1)
 
             train_idx = self.train_idx.cpu().numpy()

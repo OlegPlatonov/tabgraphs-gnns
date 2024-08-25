@@ -38,10 +38,10 @@ def get_args():
 
     # PLR embeddings for numerical features.
     parser.add_argument('--plr', default=False, action='store_true', help='Use PLR embeddings for numerical features.')
-    parser.add_argument('--plr_num_frequencies', type=int, default=48)
-    parser.add_argument('--plr_frequency_scale', type=float, default=0.01)
-    parser.add_argument('--plr_embedding_dim', type=int, default=16)
-    parser.add_argument('--plr_lite', default=False, action='store_true')
+    parser.add_argument('--plr_num_frequencies', type=int, default=48, help='Only used if plr is True.')
+    parser.add_argument('--plr_frequency_scale', type=float, default=0.01, help='Only used if plr is True.')
+    parser.add_argument('--plr_embedding_dim', type=int, default=16, help='Only used if plr is True.')
+    parser.add_argument('--plr_lite', default=False, action='store_true', help='Only used if plr is True.')
 
     # Regression options.
     parser.add_argument('--regression_target_transform', type=str, default='none',
@@ -142,7 +142,7 @@ def main():
                       num_layers=args.num_layers,
                       features_dim=dataset.features_dim,
                       hidden_dim=args.hidden_dim,
-                      output_dim=dataset.num_targets,
+                      output_dim=dataset.targets_dim,
                       num_heads=args.num_heads,
                       hidden_dim_multiplier=args.hidden_dim_multiplier,
                       normalization=args.normalization,
