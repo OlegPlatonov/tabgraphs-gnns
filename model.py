@@ -23,7 +23,7 @@ class Model(nn.Module):
     }
 
     def __init__(self, model_name, num_layers, features_dim, hidden_dim, output_dim, num_heads, hidden_dim_multiplier,
-                 normalization, dropout, use_plr, num_features_mask, plr_num_frequencies, plr_frequency_scale,
+                 normalization, dropout, use_plr, num_features_mask, plr_frequencies_dim, plr_frequencies_scale,
                  plr_embedding_dim, use_plr_lite):
         super().__init__()
 
@@ -32,9 +32,9 @@ class Model(nn.Module):
         self.use_plr = use_plr
         if use_plr:
             num_features_dim = num_features_mask.sum()
-            self.plr_embeddings = PLREmbeddings(num_features=num_features_dim, num_frequencies=plr_num_frequencies,
-                                                frequency_scale=plr_frequency_scale, embedding_dim=plr_embedding_dim,
-                                                lite=use_plr_lite)
+            self.plr_embeddings = PLREmbeddings(features_dim=num_features_dim, frequencies_dim=plr_frequencies_dim,
+                                                frequencies_scale=plr_frequencies_scale,
+                                                embedding_dim=plr_embedding_dim, lite=use_plr_lite)
             self.num_features_mask = num_features_mask
             input_dim = features_dim - num_features_dim + num_features_dim * plr_embedding_dim
         else:

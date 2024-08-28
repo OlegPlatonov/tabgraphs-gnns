@@ -38,8 +38,8 @@ def get_args():
 
     # PLR embeddings for numerical features.
     parser.add_argument('--plr', default=False, action='store_true', help='Use PLR embeddings for numerical features.')
-    parser.add_argument('--plr_num_frequencies', type=int, default=48, help='Only used if plr is True.')
-    parser.add_argument('--plr_frequency_scale', type=float, default=0.01, help='Only used if plr is True.')
+    parser.add_argument('--plr_frequencies_dim', type=int, default=48, help='Only used if plr is True.')
+    parser.add_argument('--plr_frequencies_scale', type=float, default=0.01, help='Only used if plr is True.')
     parser.add_argument('--plr_embedding_dim', type=int, default=16, help='Only used if plr is True.')
     parser.add_argument('--plr_lite', default=False, action='store_true', help='Only used if plr is True.')
 
@@ -149,8 +149,8 @@ def main():
                       dropout=args.dropout,
                       use_plr=args.plr,
                       num_features_mask=dataset.num_features_mask,
-                      plr_num_frequencies=args.plr_num_frequencies,
-                      plr_frequency_scale=args.plr_frequency_scale,
+                      plr_frequencies_dim=args.plr_frequencies_dim,
+                      plr_frequencies_scale=args.plr_frequencies_scale,
                       plr_embedding_dim=args.plr_embedding_dim,
                       use_plr_lite=args.plr_lite)
 
