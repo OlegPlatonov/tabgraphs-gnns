@@ -50,19 +50,6 @@ python train.py --name GAT_standard_dropout0.2_lr3e-5 --dataset tolokers-tab --m
 python train.py --name GAT_standard_dropout0.2_lr3e-4 --dataset tolokers-tab --model GAT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GAT_standard_dropout0.2_lr3e-3 --dataset tolokers-tab --model GAT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
 
-python train.py --name GAT_sep_quantile_dropout0_lr3e-5 --dataset tolokers-tab --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0_lr3e-4 --dataset tolokers-tab --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0_lr3e-3 --dataset tolokers-tab --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-5 --dataset tolokers-tab --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-4 --dataset tolokers-tab --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-3 --dataset tolokers-tab --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-5 --dataset tolokers-tab --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-4 --dataset tolokers-tab --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-3 --dataset tolokers-tab --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-5 --dataset tolokers-tab --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-4 --dataset tolokers-tab --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-3 --dataset tolokers-tab --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
 python train.py --name GT_quantile_dropout0_lr3e-5 --dataset tolokers-tab --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_quantile_dropout0_lr3e-4 --dataset tolokers-tab --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_quantile_dropout0_lr3e-3 --dataset tolokers-tab --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
@@ -75,20 +62,6 @@ python train.py --name GT_standard_dropout0_lr3e-3 --dataset tolokers-tab --mode
 python train.py --name GT_standard_dropout0.2_lr3e-5 --dataset tolokers-tab --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_standard_dropout0.2_lr3e-4 --dataset tolokers-tab --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_standard_dropout0.2_lr3e-3 --dataset tolokers-tab --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-python train.py --name GT_sep_quantile_dropout0_lr3e-5 --dataset tolokers-tab --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0_lr3e-4 --dataset tolokers-tab --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0_lr3e-3 --dataset tolokers-tab --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-5 --dataset tolokers-tab --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-4 --dataset tolokers-tab --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-3 --dataset tolokers-tab --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-5 --dataset tolokers-tab --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-4 --dataset tolokers-tab --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-3 --dataset tolokers-tab --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-5 --dataset tolokers-tab --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-4 --dataset tolokers-tab --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-3 --dataset tolokers-tab --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
 
 
 
@@ -146,19 +119,6 @@ python train.py --name GAT_standard_dropout0.2_lr3e-5 --dataset questions-tab --
 python train.py --name GAT_standard_dropout0.2_lr3e-4 --dataset questions-tab --model GAT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GAT_standard_dropout0.2_lr3e-3 --dataset questions-tab --model GAT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
 
-python train.py --name GAT_sep_quantile_dropout0_lr3e-5 --dataset questions-tab --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0_lr3e-4 --dataset questions-tab --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0_lr3e-3 --dataset questions-tab --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-5 --dataset questions-tab --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-4 --dataset questions-tab --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-3 --dataset questions-tab --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-5 --dataset questions-tab --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-4 --dataset questions-tab --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-3 --dataset questions-tab --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-5 --dataset questions-tab --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-4 --dataset questions-tab --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-3 --dataset questions-tab --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
 python train.py --name GT_quantile_dropout0_lr3e-5 --dataset questions-tab --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_quantile_dropout0_lr3e-4 --dataset questions-tab --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_quantile_dropout0_lr3e-3 --dataset questions-tab --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
@@ -171,21 +131,6 @@ python train.py --name GT_standard_dropout0_lr3e-3 --dataset questions-tab --mod
 python train.py --name GT_standard_dropout0.2_lr3e-5 --dataset questions-tab --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_standard_dropout0.2_lr3e-4 --dataset questions-tab --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_standard_dropout0.2_lr3e-3 --dataset questions-tab --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-python train.py --name GT_sep_quantile_dropout0_lr3e-5 --dataset questions-tab --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0_lr3e-4 --dataset questions-tab --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0_lr3e-3 --dataset questions-tab --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-5 --dataset questions-tab --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-4 --dataset questions-tab --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-3 --dataset questions-tab --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-5 --dataset questions-tab --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-4 --dataset questions-tab --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-3 --dataset questions-tab --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-5 --dataset questions-tab --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-4 --dataset questions-tab --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-3 --dataset questions-tab --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-
 
 
 
@@ -243,19 +188,6 @@ python train.py --name GAT_standard_dropout0.2_lr3e-5 --dataset city-reviews --m
 python train.py --name GAT_standard_dropout0.2_lr3e-4 --dataset city-reviews --model GAT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GAT_standard_dropout0.2_lr3e-3 --dataset city-reviews --model GAT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
 
-python train.py --name GAT_sep_quantile_dropout0_lr3e-5 --dataset city-reviews --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0_lr3e-4 --dataset city-reviews --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0_lr3e-3 --dataset city-reviews --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-5 --dataset city-reviews --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-4 --dataset city-reviews --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-3 --dataset city-reviews --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-5 --dataset city-reviews --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-4 --dataset city-reviews --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-3 --dataset city-reviews --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-5 --dataset city-reviews --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-4 --dataset city-reviews --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-3 --dataset city-reviews --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
 python train.py --name GT_quantile_dropout0_lr3e-5 --dataset city-reviews --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_quantile_dropout0_lr3e-4 --dataset city-reviews --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_quantile_dropout0_lr3e-3 --dataset city-reviews --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
@@ -268,20 +200,6 @@ python train.py --name GT_standard_dropout0_lr3e-3 --dataset city-reviews --mode
 python train.py --name GT_standard_dropout0.2_lr3e-5 --dataset city-reviews --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_standard_dropout0.2_lr3e-4 --dataset city-reviews --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_standard_dropout0.2_lr3e-3 --dataset city-reviews --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-python train.py --name GT_sep_quantile_dropout0_lr3e-5 --dataset city-reviews --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0_lr3e-4 --dataset city-reviews --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0_lr3e-3 --dataset city-reviews --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-5 --dataset city-reviews --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-4 --dataset city-reviews --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-3 --dataset city-reviews --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-5 --dataset city-reviews --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-4 --dataset city-reviews --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-3 --dataset city-reviews --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-5 --dataset city-reviews --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-4 --dataset city-reviews --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-3 --dataset city-reviews --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
 
 
 
@@ -339,19 +257,6 @@ python train.py --name GAT_standard_dropout0.2_lr3e-5 --dataset browser-games --
 python train.py --name GAT_standard_dropout0.2_lr3e-4 --dataset browser-games --model GAT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GAT_standard_dropout0.2_lr3e-3 --dataset browser-games --model GAT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
 
-python train.py --name GAT_sep_quantile_dropout0_lr3e-5 --dataset browser-games --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0_lr3e-4 --dataset browser-games --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0_lr3e-3 --dataset browser-games --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-5 --dataset browser-games --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-4 --dataset browser-games --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-3 --dataset browser-games --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-5 --dataset browser-games --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-4 --dataset browser-games --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-3 --dataset browser-games --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-5 --dataset browser-games --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-4 --dataset browser-games --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-3 --dataset browser-games --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
 python train.py --name GT_quantile_dropout0_lr3e-5 --dataset browser-games --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_quantile_dropout0_lr3e-4 --dataset browser-games --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_quantile_dropout0_lr3e-3 --dataset browser-games --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
@@ -364,20 +269,6 @@ python train.py --name GT_standard_dropout0_lr3e-3 --dataset browser-games --mod
 python train.py --name GT_standard_dropout0.2_lr3e-5 --dataset browser-games --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_standard_dropout0.2_lr3e-4 --dataset browser-games --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_standard_dropout0.2_lr3e-3 --dataset browser-games --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-python train.py --name GT_sep_quantile_dropout0_lr3e-5 --dataset browser-games --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0_lr3e-4 --dataset browser-games --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0_lr3e-3 --dataset browser-games --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-5 --dataset browser-games --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-4 --dataset browser-games --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-3 --dataset browser-games --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-5 --dataset browser-games --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-4 --dataset browser-games --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-3 --dataset browser-games --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-5 --dataset browser-games --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-4 --dataset browser-games --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-3 --dataset browser-games --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
 
 
 
@@ -435,19 +326,6 @@ python train.py --name GAT_standard_dropout0.2_lr3e-5 --dataset hm-categories --
 python train.py --name GAT_standard_dropout0.2_lr3e-4 --dataset hm-categories --model GAT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GAT_standard_dropout0.2_lr3e-3 --dataset hm-categories --model GAT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
 
-python train.py --name GAT_sep_quantile_dropout0_lr3e-5 --dataset hm-categories --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0_lr3e-4 --dataset hm-categories --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0_lr3e-3 --dataset hm-categories --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-5 --dataset hm-categories --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-4 --dataset hm-categories --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-3 --dataset hm-categories --model GAT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-5 --dataset hm-categories --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-4 --dataset hm-categories --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-3 --dataset hm-categories --model GAT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-5 --dataset hm-categories --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-4 --dataset hm-categories --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-3 --dataset hm-categories --model GAT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
 python train.py --name GT_quantile_dropout0_lr3e-5 --dataset hm-categories --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_quantile_dropout0_lr3e-4 --dataset hm-categories --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_quantile_dropout0_lr3e-3 --dataset hm-categories --model GT --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
@@ -460,21 +338,6 @@ python train.py --name GT_standard_dropout0_lr3e-3 --dataset hm-categories --mod
 python train.py --name GT_standard_dropout0.2_lr3e-5 --dataset hm-categories --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_standard_dropout0.2_lr3e-4 --dataset hm-categories --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_standard_dropout0.2_lr3e-3 --dataset hm-categories --model GT --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-python train.py --name GT_sep_quantile_dropout0_lr3e-5 --dataset hm-categories --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0_lr3e-4 --dataset hm-categories --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0_lr3e-3 --dataset hm-categories --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-5 --dataset hm-categories --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-4 --dataset hm-categories --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-3 --dataset hm-categories --model GT-sep --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-5 --dataset hm-categories --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-4 --dataset hm-categories --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-3 --dataset hm-categories --model GT-sep --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-5 --dataset hm-categories --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-4 --dataset hm-categories --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-3 --dataset hm-categories --model GT-sep --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-
 
 
 
@@ -532,19 +395,6 @@ python train.py --name GAT_standard_dropout0.2_lr3e-5 --dataset web-fraud --mode
 python train.py --name GAT_standard_dropout0.2_lr3e-4 --dataset web-fraud --model GAT --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GAT_standard_dropout0.2_lr3e-3 --dataset web-fraud --model GAT --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
 
-python train.py --name GAT_sep_quantile_dropout0_lr3e-5 --dataset web-fraud --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0_lr3e-4 --dataset web-fraud --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0_lr3e-3 --dataset web-fraud --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-5 --dataset web-fraud --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-4 --dataset web-fraud --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_quantile_dropout0.2_lr3e-3 --dataset web-fraud --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-5 --dataset web-fraud --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-4 --dataset web-fraud --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0_lr3e-3 --dataset web-fraud --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-5 --dataset web-fraud --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-4 --dataset web-fraud --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_dropout0.2_lr3e-3 --dataset web-fraud --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
 python train.py --name GT_quantile_dropout0_lr3e-5 --dataset web-fraud --model GT --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_quantile_dropout0_lr3e-4 --dataset web-fraud --model GT --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_quantile_dropout0_lr3e-3 --dataset web-fraud --model GT --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
@@ -557,21 +407,6 @@ python train.py --name GT_standard_dropout0_lr3e-3 --dataset web-fraud --model G
 python train.py --name GT_standard_dropout0.2_lr3e-5 --dataset web-fraud --model GT --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_standard_dropout0.2_lr3e-4 --dataset web-fraud --model GT --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_standard_dropout0.2_lr3e-3 --dataset web-fraud --model GT --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-python train.py --name GT_sep_quantile_dropout0_lr3e-5 --dataset web-fraud --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0_lr3e-4 --dataset web-fraud --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0_lr3e-3 --dataset web-fraud --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-5 --dataset web-fraud --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-4 --dataset web-fraud --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_quantile_dropout0.2_lr3e-3 --dataset web-fraud --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-5 --dataset web-fraud --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-4 --dataset web-fraud --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0_lr3e-3 --dataset web-fraud --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-5 --dataset web-fraud --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-4 --dataset web-fraud --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_dropout0.2_lr3e-3 --dataset web-fraud --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-
 
 
 
@@ -677,31 +512,6 @@ python train.py --name GAT_standard_standard_dropout0.2_lr3e-5 --dataset city-ro
 python train.py --name GAT_standard_standard_dropout0.2_lr3e-4 --dataset city-roads-M --model GAT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
 python train.py --name GAT_standard_standard_dropout0.2_lr3e-3 --dataset city-roads-M --model GAT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
 
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-5 --dataset city-roads-M --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-4 --dataset city-roads-M --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-3 --dataset city-roads-M --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-5 --dataset city-roads-M --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-4 --dataset city-roads-M --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-3 --dataset city-roads-M --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-5 --dataset city-roads-M --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-4 --dataset city-roads-M --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-3 --dataset city-roads-M --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-5 --dataset city-roads-M --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-4 --dataset city-roads-M --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-3 --dataset city-roads-M --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-5 --dataset city-roads-M --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-4 --dataset city-roads-M --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-3 --dataset city-roads-M --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-5 --dataset city-roads-M --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-4 --dataset city-roads-M --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-3 --dataset city-roads-M --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-5 --dataset city-roads-M --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-4 --dataset city-roads-M --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-3 --dataset city-roads-M --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-5 --dataset city-roads-M --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-4 --dataset city-roads-M --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-3 --dataset city-roads-M --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-
 python train.py --name GT_none_quantile_dropout0_lr3e-5 --dataset city-roads-M --model GT --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
 python train.py --name GT_none_quantile_dropout0_lr3e-4 --dataset city-roads-M --model GT --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
 python train.py --name GT_none_quantile_dropout0_lr3e-3 --dataset city-roads-M --model GT --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
@@ -726,33 +536,6 @@ python train.py --name GT_standard_standard_dropout0_lr3e-3 --dataset city-roads
 python train.py --name GT_standard_standard_dropout0.2_lr3e-5 --dataset city-roads-M --model GT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
 python train.py --name GT_standard_standard_dropout0.2_lr3e-4 --dataset city-roads-M --model GT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
 python train.py --name GT_standard_standard_dropout0.2_lr3e-3 --dataset city-roads-M --model GT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-5 --dataset city-roads-M --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-4 --dataset city-roads-M --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-3 --dataset city-roads-M --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-5 --dataset city-roads-M --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-4 --dataset city-roads-M --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-3 --dataset city-roads-M --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-5 --dataset city-roads-M --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-4 --dataset city-roads-M --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-3 --dataset city-roads-M --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-5 --dataset city-roads-M --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-4 --dataset city-roads-M --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-3 --dataset city-roads-M --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-5 --dataset city-roads-M --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-4 --dataset city-roads-M --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-3 --dataset city-roads-M --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-5 --dataset city-roads-M --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-4 --dataset city-roads-M --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-3 --dataset city-roads-M --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-5 --dataset city-roads-M --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-4 --dataset city-roads-M --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-3 --dataset city-roads-M --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-5 --dataset city-roads-M --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-4 --dataset city-roads-M --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-3 --dataset city-roads-M --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-
-
 
 
 
@@ -858,31 +641,6 @@ python train.py --name GAT_standard_standard_dropout0.2_lr3e-5 --dataset city-ro
 python train.py --name GAT_standard_standard_dropout0.2_lr3e-4 --dataset city-roads-L --model GAT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
 python train.py --name GAT_standard_standard_dropout0.2_lr3e-3 --dataset city-roads-L --model GAT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
 
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-5 --dataset city-roads-L --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-4 --dataset city-roads-L --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-3 --dataset city-roads-L --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-5 --dataset city-roads-L --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-4 --dataset city-roads-L --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-3 --dataset city-roads-L --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-5 --dataset city-roads-L --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-4 --dataset city-roads-L --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-3 --dataset city-roads-L --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-5 --dataset city-roads-L --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-4 --dataset city-roads-L --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-3 --dataset city-roads-L --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-5 --dataset city-roads-L --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-4 --dataset city-roads-L --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-3 --dataset city-roads-L --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-5 --dataset city-roads-L --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-4 --dataset city-roads-L --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-3 --dataset city-roads-L --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-5 --dataset city-roads-L --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-4 --dataset city-roads-L --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-3 --dataset city-roads-L --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-5 --dataset city-roads-L --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-4 --dataset city-roads-L --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-3 --dataset city-roads-L --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-
 python train.py --name GT_none_quantile_dropout0_lr3e-5 --dataset city-roads-L --model GT --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
 python train.py --name GT_none_quantile_dropout0_lr3e-4 --dataset city-roads-L --model GT --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
 python train.py --name GT_none_quantile_dropout0_lr3e-3 --dataset city-roads-L --model GT --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
@@ -907,33 +665,6 @@ python train.py --name GT_standard_standard_dropout0_lr3e-3 --dataset city-roads
 python train.py --name GT_standard_standard_dropout0.2_lr3e-5 --dataset city-roads-L --model GT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
 python train.py --name GT_standard_standard_dropout0.2_lr3e-4 --dataset city-roads-L --model GT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
 python train.py --name GT_standard_standard_dropout0.2_lr3e-3 --dataset city-roads-L --model GT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-5 --dataset city-roads-L --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-4 --dataset city-roads-L --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-3 --dataset city-roads-L --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-5 --dataset city-roads-L --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-4 --dataset city-roads-L --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-3 --dataset city-roads-L --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-5 --dataset city-roads-L --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-4 --dataset city-roads-L --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-3 --dataset city-roads-L --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-5 --dataset city-roads-L --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-4 --dataset city-roads-L --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-3 --dataset city-roads-L --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-5 --dataset city-roads-L --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-4 --dataset city-roads-L --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-3 --dataset city-roads-L --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-5 --dataset city-roads-L --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-4 --dataset city-roads-L --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-3 --dataset city-roads-L --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-5 --dataset city-roads-L --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-4 --dataset city-roads-L --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-3 --dataset city-roads-L --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-5 --dataset city-roads-L --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-4 --dataset city-roads-L --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --use_node_embeddings --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-3 --dataset city-roads-L --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --use_node_embeddings --device cuda:0 --amp
-
-
 
 
 
@@ -1039,31 +770,6 @@ python train.py --name GAT_standard_standard_dropout0.2_lr3e-5 --dataset avazu-d
 python train.py --name GAT_standard_standard_dropout0.2_lr3e-4 --dataset avazu-devices --model GAT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GAT_standard_standard_dropout0.2_lr3e-3 --dataset avazu-devices --model GAT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
 
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-5 --dataset avazu-devices --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-4 --dataset avazu-devices --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-3 --dataset avazu-devices --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-5 --dataset avazu-devices --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-4 --dataset avazu-devices --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-3 --dataset avazu-devices --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-5 --dataset avazu-devices --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-4 --dataset avazu-devices --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-3 --dataset avazu-devices --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-5 --dataset avazu-devices --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-4 --dataset avazu-devices --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-3 --dataset avazu-devices --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-5 --dataset avazu-devices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-4 --dataset avazu-devices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-3 --dataset avazu-devices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-5 --dataset avazu-devices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-4 --dataset avazu-devices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-3 --dataset avazu-devices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-5 --dataset avazu-devices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-4 --dataset avazu-devices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-3 --dataset avazu-devices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-5 --dataset avazu-devices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-4 --dataset avazu-devices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-3 --dataset avazu-devices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
 python train.py --name GT_none_quantile_dropout0_lr3e-5 --dataset avazu-devices --model GT --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_none_quantile_dropout0_lr3e-4 --dataset avazu-devices --model GT --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_none_quantile_dropout0_lr3e-3 --dataset avazu-devices --model GT --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
@@ -1088,33 +794,6 @@ python train.py --name GT_standard_standard_dropout0_lr3e-3 --dataset avazu-devi
 python train.py --name GT_standard_standard_dropout0.2_lr3e-5 --dataset avazu-devices --model GT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_standard_standard_dropout0.2_lr3e-4 --dataset avazu-devices --model GT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_standard_standard_dropout0.2_lr3e-3 --dataset avazu-devices --model GT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-5 --dataset avazu-devices --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-4 --dataset avazu-devices --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-3 --dataset avazu-devices --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-5 --dataset avazu-devices --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-4 --dataset avazu-devices --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-3 --dataset avazu-devices --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-5 --dataset avazu-devices --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-4 --dataset avazu-devices --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-3 --dataset avazu-devices --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-5 --dataset avazu-devices --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-4 --dataset avazu-devices --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-3 --dataset avazu-devices --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-5 --dataset avazu-devices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-4 --dataset avazu-devices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-3 --dataset avazu-devices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-5 --dataset avazu-devices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-4 --dataset avazu-devices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-3 --dataset avazu-devices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-5 --dataset avazu-devices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-4 --dataset avazu-devices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-3 --dataset avazu-devices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-5 --dataset avazu-devices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-4 --dataset avazu-devices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-3 --dataset avazu-devices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-
 
 
 
@@ -1220,31 +899,6 @@ python train.py --name GAT_standard_standard_dropout0.2_lr3e-5 --dataset hm-pric
 python train.py --name GAT_standard_standard_dropout0.2_lr3e-4 --dataset hm-prices --model GAT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GAT_standard_standard_dropout0.2_lr3e-3 --dataset hm-prices --model GAT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
 
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-5 --dataset hm-prices --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-4 --dataset hm-prices --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-3 --dataset hm-prices --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-5 --dataset hm-prices --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-4 --dataset hm-prices --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-3 --dataset hm-prices --model GAT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-5 --dataset hm-prices --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-4 --dataset hm-prices --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-3 --dataset hm-prices --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-5 --dataset hm-prices --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-4 --dataset hm-prices --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-3 --dataset hm-prices --model GAT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-5 --dataset hm-prices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-4 --dataset hm-prices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-3 --dataset hm-prices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-5 --dataset hm-prices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-4 --dataset hm-prices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-3 --dataset hm-prices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-5 --dataset hm-prices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-4 --dataset hm-prices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-3 --dataset hm-prices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-5 --dataset hm-prices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-4 --dataset hm-prices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-3 --dataset hm-prices --model GAT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
 python train.py --name GT_none_quantile_dropout0_lr3e-5 --dataset hm-prices --model GT --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_none_quantile_dropout0_lr3e-4 --dataset hm-prices --model GT --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_none_quantile_dropout0_lr3e-3 --dataset hm-prices --model GT --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
@@ -1269,33 +923,6 @@ python train.py --name GT_standard_standard_dropout0_lr3e-3 --dataset hm-prices 
 python train.py --name GT_standard_standard_dropout0.2_lr3e-5 --dataset hm-prices --model GT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_standard_standard_dropout0.2_lr3e-4 --dataset hm-prices --model GT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_standard_standard_dropout0.2_lr3e-3 --dataset hm-prices --model GT --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-5 --dataset hm-prices --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-4 --dataset hm-prices --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-3 --dataset hm-prices --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-5 --dataset hm-prices --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-4 --dataset hm-prices --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-3 --dataset hm-prices --model GT-sep --regression_target_transform none --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-5 --dataset hm-prices --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-4 --dataset hm-prices --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-3 --dataset hm-prices --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-5 --dataset hm-prices --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-4 --dataset hm-prices --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-3 --dataset hm-prices --model GT-sep --regression_target_transform none --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-5 --dataset hm-prices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-4 --dataset hm-prices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-3 --dataset hm-prices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-5 --dataset hm-prices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-4 --dataset hm-prices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-3 --dataset hm-prices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform quantile-transform-normal --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-5 --dataset hm-prices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-4 --dataset hm-prices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-3 --dataset hm-prices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-5 --dataset hm-prices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-4 --dataset hm-prices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-3 --dataset hm-prices --model GT-sep --regression_target_transform standard-scaler --numerical_features_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-
 
 
 
@@ -1401,31 +1028,6 @@ python train.py --name GAT_standard_standard_dropout0.2_lr3e-5 --dataset web-tra
 python train.py --name GAT_standard_standard_dropout0.2_lr3e-4 --dataset web-traffic --model GAT --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GAT_standard_standard_dropout0.2_lr3e-3 --dataset web-traffic --model GAT --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
 
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-5 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-4 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0_lr3e-3 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-5 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-4 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_none_quantile_dropout0.2_lr3e-3 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-5 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform none --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-4 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform none --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0_lr3e-3 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform none --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-5 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform none --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-4 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform none --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_none_standard_dropout0.2_lr3e-3 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform none --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-5 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-4 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0_lr3e-3 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-5 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-4 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_quantile_dropout0.2_lr3e-3 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-5 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-4 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0_lr3e-3 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-5 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-4 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GAT_sep_standard_standard_dropout0.2_lr3e-3 --dataset web-traffic --model GAT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
 python train.py --name GT_none_quantile_dropout0_lr3e-5 --dataset web-traffic --model GT --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_none_quantile_dropout0_lr3e-4 --dataset web-traffic --model GT --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_none_quantile_dropout0_lr3e-3 --dataset web-traffic --model GT --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0 --lr 3e-3 --device cuda:0 --amp
@@ -1450,28 +1052,3 @@ python train.py --name GT_standard_standard_dropout0_lr3e-3 --dataset web-traffi
 python train.py --name GT_standard_standard_dropout0.2_lr3e-5 --dataset web-traffic --model GT --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
 python train.py --name GT_standard_standard_dropout0.2_lr3e-4 --dataset web-traffic --model GT --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
 python train.py --name GT_standard_standard_dropout0.2_lr3e-3 --dataset web-traffic --model GT --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-5 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-4 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0_lr3e-3 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-5 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-4 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_none_quantile_dropout0.2_lr3e-3 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform none --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-5 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform none --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-4 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform none --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0_lr3e-3 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform none --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-5 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform none --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-4 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform none --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_none_standard_dropout0.2_lr3e-3 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform none --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-5 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-4 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0_lr3e-3 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-5 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-4 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_quantile_dropout0.2_lr3e-3 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform quantile-transform-normal --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-5 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-4 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0_lr3e-3 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0 --lr 3e-3 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-5 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-5 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-4 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-4 --device cuda:0 --amp
-python train.py --name GT_sep_standard_standard_dropout0.2_lr3e-3 --dataset web-traffic --model GT-sep --num_layers 2 --hidden_dim 256 --numerical_features_transform standard-scaler --regression_target_transform standard-scaler --dropout 0.2 --lr 3e-3 --device cuda:0 --amp
