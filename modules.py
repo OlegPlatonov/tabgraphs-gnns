@@ -46,9 +46,11 @@ class GCNModule(nn.Module):
                                                      dropout=dropout)
 
     def forward(self, graph, x):
-        degrees = graph.out_degrees().float()
-        degree_edge_products = ops.u_mul_v(graph, degrees, degrees)
-        norm_coefs = 1 / degree_edge_products ** 0.5
+        in_degrees = graph.in_degrees().float()
+        out_degrees = graph.out_degrees().float()
+        degree_edge_products = ops.u_mul_v(graph, out_degrees, in_degrees)
+        degree_edge_products[degree_edge_products == 0] = 1
+        norm_coefs = 1 / degree_edge_products.sqrt()
 
         x = ops.u_mul_e_sum(graph, x, norm_coefs)
 
