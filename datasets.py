@@ -19,10 +19,10 @@ class Dataset:
         'min-max-scaler': MinMaxScaler,
         'robust-scaler': partial(RobustScaler, unit_variance=True),
         'power-transform-yeo-johnson': partial(PowerTransformer, method='yeo-johnson', standardize=True),
-        'quantile-transform-normal': partial(QuantileTransformer, output_distribution='normal',
-                                             subsample=1_000_000_000, random_state=0),
-        'quantile-transform-uniform': partial(QuantileTransformer, output_distribution='uniform',
-                                              subsample=1_000_000_000, random_state=0)
+        'quantile-transform-normal': partial(QuantileTransformer, output_distribution='normal', subsample=None,
+                                             random_state=0),
+        'quantile-transform-uniform': partial(QuantileTransformer, output_distribution='uniform', subsample=None,
+                                              random_state=0)
     }
 
     def __init__(self, name, add_self_loops=False, use_node_embeddings=False,
