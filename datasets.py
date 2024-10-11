@@ -16,7 +16,7 @@ class Dataset:
     transforms = {
         'none': partial(FunctionTransformer, func=lambda x: x, inverse_func=lambda x: x),
         'standard-scaler': StandardScaler,
-        'min-max-scaler': MinMaxScaler,
+        'min-max-scaler': partial(MinMaxScaler, clip=True),
         'robust-scaler': partial(RobustScaler, unit_variance=True),
         'power-transform-yeo-johnson': partial(PowerTransformer, method='yeo-johnson', standardize=True),
         'quantile-transform-normal': partial(QuantileTransformer, output_distribution='normal', subsample=None,
