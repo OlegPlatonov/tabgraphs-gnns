@@ -23,7 +23,7 @@ class Model(nn.Module):
     }
 
     def __init__(self, model_name, num_layers, features_dim, hidden_dim, output_dim, num_heads, hidden_dim_multiplier,
-                 normalization, dropout, use_plr, num_features_mask, plr_frequencies_dim, plr_frequencies_scale,
+                 normalization, dropout, use_plr, numerical_features_mask, plr_frequencies_dim, plr_frequencies_scale,
                  plr_embedding_dim, use_plr_lite):
         super().__init__()
 
@@ -31,12 +31,12 @@ class Model(nn.Module):
 
         self.use_plr = use_plr
         if use_plr:
-            num_features_dim = num_features_mask.sum()
-            self.plr_embeddings = PLREmbeddings(features_dim=num_features_dim, frequencies_dim=plr_frequencies_dim,
+            numerical_features_dim = numerical_features_mask.sum()
+            self.plr_embeddings = PLREmbeddings(features_dim=numerical_features_dim, frequencies_dim=plr_frequencies_dim,
                                                 frequencies_scale=plr_frequencies_scale,
                                                 embedding_dim=plr_embedding_dim, lite=use_plr_lite)
-            self.num_features_mask = num_features_mask
-            input_dim = features_dim - num_features_dim + num_features_dim * plr_embedding_dim
+            self.numerical_features_mask = numerical_features_mask
+            input_dim = features_dim - numerical_features_dim + numerical_features_dim * plr_embedding_dim
         else:
             input_dim = features_dim
 
@@ -61,9 +61,9 @@ class Model(nn.Module):
 
     def forward(self, graph, x):
         if self.use_plr:
-            x_num = x[:, self.num_features_mask]
-            x_num_embedded = self.plr_embeddings(x_num).flatten(start_dim=1)
-            x = torch.cat([x_num_embedded, x[:, ~self.num_features_mask]], axis=1)
+            x_numerical = x[:, self.numerical_features_mask]
+            x_numerical_embedded = self.plr_embeddings(x_numerical).flatten(start_dim=1)
+            x = torch.cat([x_numerical_embedded, x[:, ~self.numerical_features_mask]], axis=1)
 
         x = self.input_linear(x)
         x = self.dropout(x)

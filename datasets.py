@@ -26,7 +26,7 @@ class Dataset:
     }
 
     def __init__(self, name, add_self_loops=False, use_node_embeddings=False,
-                 num_features_imputation_strategy='most_frequent', num_features_transform='none',
+                 numerical_features_imputation_strategy='most_frequent', numerical_features_transform='none',
                  regression_target_transform='none', regression_by_classification=False, num_regression_target_bins=50,
                  regression_target_binning_strategy='uniform', use_soft_labels=False, device='cpu'):
         print('Preparing data...')
@@ -34,19 +34,22 @@ class Dataset:
             info = yaml.safe_load(file)
 
         features_df = pd.read_csv(f'data/{name}/features.csv', index_col=0)
-        num_features = features_df[info['num_feature_names']].values.astype(np.float32)
-        bin_features = features_df[info['bin_feature_names']].values.astype(np.float32)
-        cat_features = features_df[info['cat_feature_names']].values.astype(np.float32)
+        numerical_features = features_df[info['num_feature_names']].values.astype(np.float32)
+        binary_features = features_df[info['bin_feature_names']].values.astype(np.float32)
+        categorical_features = features_df[info['cat_feature_names']].values.astype(np.float32)
         targets = features_df[info['target_name']].values.astype(np.float32)
 
-        if num_features.shape[1] > 0:
+        if numerical_features.shape[1] > 0:
             if info['has_nans_in_num_features']:
-                num_features = SimpleImputer(strategy=num_features_imputation_strategy).fit_transform(num_features)
+                imputer = SimpleImputer(strategy=numerical_features_imputation_strategy)
+                numerical_features = imputer.fit_transform(numerical_features)
 
-            num_features = self.transforms[num_features_transform]().fit_transform(num_features)
+            numerical_features_transform = self.transforms[numerical_features_transform]()
+            numerical_features = numerical_features_transform.fit_transform(numerical_features)
 
-        if cat_features.shape[1] > 0:
-            cat_features = OneHotEncoder(sparse_output=False, dtype=np.float32).fit_transform(cat_features)
+        if categorical_features.shape[1] > 0:
+            one_hot_encoder = OneHotEncoder(sparse_output=False, dtype=np.float32)
+            categorical_features = one_hot_encoder.fit_transform(categorical_features)
 
         if use_node_embeddings:
             node_embeddings = np.load(f'data/{name}/node_embeddings.npz')['node_embeds']
@@ -103,15 +106,15 @@ class Dataset:
         edges_df = pd.read_csv(f'data/{name}/edgelist.csv')
         edges = edges_df.values[:, :2]
 
-        features = np.concatenate([num_features, bin_features, cat_features], axis=1)
+        features = np.concatenate([numerical_features, binary_features, categorical_features], axis=1)
         if use_node_embeddings:
             features = np.concatenate([features, node_embeddings], axis=1)
 
-        num_features_mask = np.zeros(features.shape[1], dtype=bool)
-        num_features_mask[:num_features.shape[1]] = True
+        numerical_features_mask = np.zeros(features.shape[1], dtype=bool)
+        numerical_features_mask[:numerical_features.shape[1]] = True
 
         features = torch.from_numpy(features)
-        num_features_mask = torch.from_numpy(num_features_mask)
+        numerical_features_mask = torch.from_numpy(numerical_features_mask)
         targets = torch.from_numpy(targets)
         if info['task'] == 'regression':
             targets_orig = torch.from_numpy(targets_orig)
@@ -138,7 +141,7 @@ class Dataset:
 
         self.graph = graph.to(device)
         self.features = features.to(device)
-        self.num_features_mask = num_features_mask.to(device)
+        self.numerical_features_mask = numerical_features_mask.to(device)
         self.targets = targets.to(device)
         if info['task'] == 'regression':
             self.targets_orig = targets_orig.to(device)
