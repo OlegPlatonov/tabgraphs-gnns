@@ -15,14 +15,14 @@ from utils import cross_entropy_with_soft_labels, get_soft_labels
 class Dataset:
     transforms = {
         'none': partial(FunctionTransformer, func=lambda x: x, inverse_func=lambda x: x),
-        'standard-scaler': StandardScaler,
-        'min-max-scaler': partial(MinMaxScaler, clip=True),
-        'robust-scaler': partial(RobustScaler, unit_variance=True),
-        'power-transform-yeo-johnson': partial(PowerTransformer, method='yeo-johnson', standardize=True),
+        'standard-scaler': partial(StandardScaler, copy=False),
+        'min-max-scaler': partial(MinMaxScaler, clip=True, copy=False),
+        'robust-scaler': partial(RobustScaler, unit_variance=True, copy=False),
+        'power-transform-yeo-johnson': partial(PowerTransformer, method='yeo-johnson', standardize=True, copy=False),
         'quantile-transform-normal': partial(QuantileTransformer, output_distribution='normal', subsample=None,
-                                             random_state=0),
+                                             random_state=0, copy=False),
         'quantile-transform-uniform': partial(QuantileTransformer, output_distribution='uniform', subsample=None,
-                                              random_state=0)
+                                              random_state=0, copy=False)
     }
 
     def __init__(self, name, add_self_loops=False, use_node_embeddings=False,
