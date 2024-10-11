@@ -1,4 +1,5 @@
 import yaml
+from functools import partial
 import numpy as np
 import pandas as pd
 import torch
@@ -13,15 +14,15 @@ from utils import cross_entropy_with_soft_labels, get_soft_labels
 
 class Dataset:
     transforms = {
-        'none': FunctionTransformer(func=lambda x: x, inverse_func=lambda x: x),
-        'standard-scaler': StandardScaler(),
-        'min-max-scaler': MinMaxScaler(),
-        'robust-scaler': RobustScaler(unit_variance=True),
-        'power-transform-yeo-johnson': PowerTransformer(method='yeo-johnson', standardize=True),
-        'quantile-transform-normal': QuantileTransformer(output_distribution='normal', subsample=1_000_000_000,
-                                                         random_state=0),
-        'quantile-transform-uniform': QuantileTransformer(output_distribution='uniform', subsample=1_000_000_000,
-                                                          random_state=0)
+        'none': partial(FunctionTransformer, func=lambda x: x, inverse_func=lambda x: x),
+        'standard-scaler': StandardScaler,
+        'min-max-scaler': MinMaxScaler,
+        'robust-scaler': partial(RobustScaler, unit_variance=True),
+        'power-transform-yeo-johnson': partial(PowerTransformer, method='yeo-johnson', standardize=True),
+        'quantile-transform-normal': partial(QuantileTransformer, output_distribution='normal',
+                                             subsample=1_000_000_000, random_state=0),
+        'quantile-transform-uniform': partial(QuantileTransformer, output_distribution='uniform',
+                                              subsample=1_000_000_000, random_state=0)
     }
 
     def __init__(self, name, add_self_loops=False, use_node_embeddings=False,
@@ -42,7 +43,7 @@ class Dataset:
             if info['has_nans_in_num_features']:
                 num_features = SimpleImputer(strategy=num_features_imputation_strategy).fit_transform(num_features)
 
-            num_features = self.transforms[num_features_transform].fit_transform(num_features)
+            num_features = self.transforms[num_features_transform]().fit_transform(num_features)
 
         if cat_features.shape[1] > 0:
             cat_features = OneHotEncoder(sparse_output=False, dtype=np.float32).fit_transform(cat_features)
@@ -76,7 +77,7 @@ class Dataset:
                 bin_preds = (bin_edges[:-1] + bin_edges[1:]) / 2
 
             else:
-                targets_transform = self.transforms[regression_target_transform]
+                targets_transform = self.transforms[regression_target_transform]()
                 targets_transform.fit(targets[train_idx][:, None])
                 targets[labeled_idx] = targets_transform.transform(targets[labeled_idx][:, None]).squeeze(1)
 
