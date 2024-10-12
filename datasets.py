@@ -25,7 +25,7 @@ class Dataset:
     }
 
     def __init__(self, name, add_self_loops=False, use_node_embeddings=False,
-                 numerical_features_transform='none', numerical_features_imputation_strategy='most_frequent',
+                 numerical_features_transform='none', numerical_features_nan_imputation_strategy='most_frequent',
                  regression_targets_transform='none', device='cpu'):
         print('Preparing data...')
         with open(f'data/{name}/info.yaml', 'r') as file:
@@ -42,7 +42,7 @@ class Dataset:
             numerical_features = numerical_features_transform.fit_transform(numerical_features)
 
             if info['has_nans_in_num_features']:
-                imputer = SimpleImputer(strategy=numerical_features_imputation_strategy)
+                imputer = SimpleImputer(strategy=numerical_features_nan_imputation_strategy)
                 numerical_features = imputer.fit_transform(numerical_features)
 
         if categorical_features.shape[1] > 0:

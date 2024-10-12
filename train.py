@@ -32,7 +32,7 @@ def get_args():
                         choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
                                  'power-transform-yeo-johnson', 'quantile-transform-normal',
                                  'quantile-transform-uniform'])
-    parser.add_argument('--numerical_features_imputation_strategy', type=str, default='most_frequent',
+    parser.add_argument('--numerical_features_nan_imputation_strategy', type=str, default='most_frequent',
                         choices=['mean', 'median', 'most_frequent'],
                         help='Only used for datasets that have NaNs in numerical features.')
 
@@ -117,7 +117,7 @@ def main():
                       add_self_loops=(args.model in ['GCN', 'GAT', 'GT']),
                       use_node_embeddings=args.use_node_embeddings,
                       numerical_features_transform=args.numerical_features_transform,
-                      numerical_features_imputation_strategy=args.numerical_features_imputation_strategy,
+                      numerical_features_nan_imputation_strategy=args.numerical_features_nan_imputation_strategy,
                       regression_targets_transform=args.regression_targets_transform,
                       device=args.device)
 
