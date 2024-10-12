@@ -43,8 +43,8 @@ def get_args():
     parser.add_argument('--plr_embedding_dim', type=int, default=16, help='Only used if plr is True.')
     parser.add_argument('--plr_lite', default=False, action='store_true', help='Only used if plr is True.')
 
-    # Regression target preprocessing.
-    parser.add_argument('--regression_target_transform', type=str, default='none',
+    # Regression targets preprocessing.
+    parser.add_argument('--regression_targets_transform', type=str, default='none',
                         choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
                                  'power-transform-yeo-johnson', 'quantile-transform-normal',
                                  'quantile-transform-uniform'])
@@ -118,7 +118,7 @@ def main():
                       use_node_embeddings=args.use_node_embeddings,
                       numerical_features_imputation_strategy=args.numerical_features_imputation_strategy,
                       numerical_features_transform=args.numerical_features_transform,
-                      regression_target_transform=args.regression_target_transform,
+                      regression_targets_transform=args.regression_targets_transform,
                       device=args.device)
 
     logger = Logger(args, metric=dataset.metric)

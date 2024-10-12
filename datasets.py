@@ -26,7 +26,7 @@ class Dataset:
 
     def __init__(self, name, add_self_loops=False, use_node_embeddings=False,
                  numerical_features_imputation_strategy='most_frequent', numerical_features_transform='none',
-                 regression_target_transform='none', device='cpu'):
+                 regression_targets_transform='none', device='cpu'):
         print('Preparing data...')
         with open(f'data/{name}/info.yaml', 'r') as file:
             info = yaml.safe_load(file)
@@ -62,7 +62,7 @@ class Dataset:
         if info['task'] == 'regression':
             targets_orig = targets.copy()
             labeled_idx = np.concatenate([train_idx, val_idx, test_idx], axis=0)
-            targets_transform = self.transforms[regression_target_transform]()
+            targets_transform = self.transforms[regression_targets_transform]()
             targets_transform.fit(targets[train_idx][:, None])
             targets[labeled_idx] = targets_transform.transform(targets[labeled_idx][:, None]).squeeze(1)
 
