@@ -28,13 +28,13 @@ def get_args():
                              'respective dataset folder).')
 
     # Numerical features preprocessing.
-    parser.add_argument('--numerical_features_imputation_strategy', type=str, default='most_frequent',
-                        choices=['mean', 'median', 'most_frequent'],
-                        help='Only used for datasets that have NaNs in numerical features.')
     parser.add_argument('--numerical_features_transform', type=str, default='quantile-transform-normal',
                         choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
                                  'power-transform-yeo-johnson', 'quantile-transform-normal',
                                  'quantile-transform-uniform'])
+    parser.add_argument('--numerical_features_imputation_strategy', type=str, default='most_frequent',
+                        choices=['mean', 'median', 'most_frequent'],
+                        help='Only used for datasets that have NaNs in numerical features.')
 
     # PLR embeddings for numerical features.
     parser.add_argument('--plr', default=False, action='store_true', help='Use PLR embeddings for numerical features.')
@@ -116,8 +116,8 @@ def main():
     dataset = Dataset(name=args.dataset,
                       add_self_loops=(args.model in ['GCN', 'GAT', 'GT']),
                       use_node_embeddings=args.use_node_embeddings,
-                      numerical_features_imputation_strategy=args.numerical_features_imputation_strategy,
                       numerical_features_transform=args.numerical_features_transform,
+                      numerical_features_imputation_strategy=args.numerical_features_imputation_strategy,
                       regression_targets_transform=args.regression_targets_transform,
                       device=args.device)
 
