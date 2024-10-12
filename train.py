@@ -43,21 +43,11 @@ def get_args():
     parser.add_argument('--plr_embedding_dim', type=int, default=16, help='Only used if plr is True.')
     parser.add_argument('--plr_lite', default=False, action='store_true', help='Only used if plr is True.')
 
-    # Regression options.
+    # Regression target preprocessing.
     parser.add_argument('--regression_target_transform', type=str, default='none',
                         choices=['none', 'standard-scaler', 'min-max-scaler', 'robust-scaler',
                                  'power-transform-yeo-johnson', 'quantile-transform-normal',
-                                 'quantile-transform-uniform'],
-                        help='Only used if regression_by_classification is False.')
-    parser.add_argument('--regression_by_classification', default=False, action='store_true',
-                        help='Convert regression task to classification by binning targets.')
-    parser.add_argument('--num_regression_target_bins', type=int, default=50,
-                        help='Only used if regression_by_classification is True.')
-    parser.add_argument('--regression_target_binning_strategy', type=str, default='uniform',
-                        choices=['uniform', 'kmeans', 'quantile'],
-                        help='Only used if regression_by_classification is True.')
-    parser.add_argument('--use_soft_labels', default=False, action='store_true',
-                        help='Only used if regression_by_classification is True.')
+                                 'quantile-transform-uniform'])
 
     # Model architecture.
     parser.add_argument('--model', type=str, default='GraphSAGE',
@@ -128,10 +118,6 @@ def main():
                       use_node_embeddings=args.use_node_embeddings,
                       numerical_features_imputation_strategy=args.numerical_features_imputation_strategy,
                       numerical_features_transform=args.numerical_features_transform,
-                      regression_by_classification=args.regression_by_classification,
-                      num_regression_target_bins=args.num_regression_target_bins,
-                      regression_target_binning_strategy=args.regression_target_binning_strategy,
-                      use_soft_labels=args.use_soft_labels,
                       regression_target_transform=args.regression_target_transform,
                       device=args.device)
 

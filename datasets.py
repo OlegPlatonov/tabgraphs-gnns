@@ -6,10 +6,9 @@ import torch
 from torch.nn import functional as F
 import dgl
 from sklearn.preprocessing import (FunctionTransformer, StandardScaler, MinMaxScaler, RobustScaler, PowerTransformer,
-                                   QuantileTransformer, OneHotEncoder, KBinsDiscretizer)
+                                   QuantileTransformer, OneHotEncoder)
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import average_precision_score, r2_score
-from utils import cross_entropy_with_soft_labels, get_soft_labels
 
 
 class Dataset:
@@ -27,8 +26,7 @@ class Dataset:
 
     def __init__(self, name, add_self_loops=False, use_node_embeddings=False,
                  numerical_features_imputation_strategy='most_frequent', numerical_features_transform='none',
-                 regression_target_transform='none', regression_by_classification=False, num_regression_target_bins=50,
-                 regression_target_binning_strategy='uniform', use_soft_labels=False, device='cpu'):
+                 regression_target_transform='none', device='cpu'):
         print('Preparing data...')
         with open(f'data/{name}/info.yaml', 'r') as file:
             info = yaml.safe_load(file)
@@ -64,25 +62,9 @@ class Dataset:
         if info['task'] == 'regression':
             targets_orig = targets.copy()
             labeled_idx = np.concatenate([train_idx, val_idx, test_idx], axis=0)
-
-            if regression_by_classification:
-                target_binner = KBinsDiscretizer(n_bins=num_regression_target_bins,
-                                                 strategy=regression_target_binning_strategy,
-                                                 encode='ordinal',
-                                                 subsample=None)
-                target_binner.fit(targets[train_idx][:, None])
-                targets[labeled_idx] = target_binner.transform(targets[labeled_idx][:, None]).squeeze(1)
-                targets = targets.astype(np.int64)
-                if use_soft_labels:
-                    targets = get_soft_labels(targets, num_bins=num_regression_target_bins, labeled_idx=labeled_idx)
-
-                bin_edges = target_binner.bin_edges_[0]
-                bin_preds = (bin_edges[:-1] + bin_edges[1:]) / 2
-
-            else:
-                targets_transform = self.transforms[regression_target_transform]()
-                targets_transform.fit(targets[train_idx][:, None])
-                targets[labeled_idx] = targets_transform.transform(targets[labeled_idx][:, None]).squeeze(1)
+            targets_transform = self.transforms[regression_target_transform]()
+            targets_transform.fit(targets[train_idx][:, None])
+            targets[labeled_idx] = targets_transform.transform(targets[labeled_idx][:, None]).squeeze(1)
 
         if info['task'] == 'binary_classification':
             targets_dim = 1
@@ -92,14 +74,8 @@ class Dataset:
             targets = targets.astype(np.int64)
             loss_fn = F.cross_entropy
         elif info['task'] == 'regression':
-            targets_dim = num_regression_target_bins if regression_by_classification else 1
-            if regression_by_classification:
-                if use_soft_labels:
-                    loss_fn = cross_entropy_with_soft_labels
-                else:
-                    loss_fn = F.cross_entropy
-            else:
-                loss_fn = F.mse_loss
+            targets_dim = 1
+            loss_fn = F.mse_loss
         else:
             raise ValueError(f'Unknown task: {info["task"]}.')
 
@@ -118,8 +94,6 @@ class Dataset:
         targets = torch.from_numpy(targets)
         if info['task'] == 'regression':
             targets_orig = torch.from_numpy(targets_orig)
-            if regression_by_classification:
-                bin_preds = torch.from_numpy(bin_preds)
 
         edges = torch.from_numpy(edges)
         graph = dgl.graph((edges[:, 0], edges[:, 1]), num_nodes=len(features), idtype=torch.int32)
@@ -145,13 +119,7 @@ class Dataset:
         self.targets = targets.to(device)
         if info['task'] == 'regression':
             self.targets_orig = targets_orig.to(device)
-            self.regression_by_classification = regression_by_classification
-            self.use_soft_labels = use_soft_labels
-            if regression_by_classification:
-                self.bin_preds = bin_preds.to(device)
-                self.target_binner = target_binner
-            else:
-                self.targets_transform = targets_transform
+            self.targets_transform = targets_transform
 
         self.features_dim = features.shape[1]
         self.targets_dim = targets_dim
@@ -183,12 +151,7 @@ class Dataset:
 
         elif self.metric == 'R2':
             targets_orig = self.targets_orig.cpu().numpy()
-
-            if self.regression_by_classification:
-                bin_idx = preds.argmax(axis=1)
-                preds_orig = self.bin_preds[bin_idx].cpu().numpy()
-            else:
-                preds_orig = self.targets_transform.inverse_transform(preds.cpu().numpy()[:, None]).squeeze(1)
+            preds_orig = self.targets_transform.inverse_transform(preds.cpu().numpy()[:, None]).squeeze(1)
 
             train_idx = self.train_idx.cpu().numpy()
             val_idx = self.val_idx.cpu().numpy()
