@@ -42,7 +42,8 @@ class Dataset:
             numerical_features = numerical_features_transform.fit_transform(numerical_features)
 
             if info['has_nans_in_num_features']:
-                imputer = SimpleImputer(missing_values=np.nan, strategy=numerical_features_nan_imputation_strategy)
+                imputer = SimpleImputer(missing_values=np.nan, strategy=numerical_features_nan_imputation_strategy,
+                                        copy=False)
                 numerical_features = imputer.fit_transform(numerical_features)
 
         if categorical_features.shape[1] > 0:
