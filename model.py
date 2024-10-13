@@ -32,11 +32,13 @@ class Model(nn.Module):
         self.use_plr = use_plr
         if use_plr:
             numerical_features_dim = numerical_features_mask.sum()
-            self.plr_embeddings = PLREmbeddings(features_dim=numerical_features_dim, frequencies_dim=plr_frequencies_dim,
-                                                frequencies_scale=plr_frequencies_scale,
-                                                embedding_dim=plr_embedding_dim, lite=use_plr_lite)
-            self.numerical_features_mask = numerical_features_mask
             input_dim = features_dim - numerical_features_dim + numerical_features_dim * plr_embedding_dim
+            self.register_buffer('numerical_features_mask', numerical_features_mask)
+            self.plr_embeddings = PLREmbeddings(features_dim=numerical_features_dim,
+                                                frequencies_dim=plr_frequencies_dim,
+                                                frequencies_scale=plr_frequencies_scale,
+                                                embedding_dim=plr_embedding_dim,
+                                                lite=use_plr_lite)
         else:
             input_dim = features_dim
 
