@@ -4,8 +4,8 @@ from tqdm import tqdm
 import torch
 from torch.cuda.amp import autocast, GradScaler
 
+from dataset import Dataset
 from model import Model
-from datasets import Dataset
 from utils import Logger, get_parameter_groups, get_lr_scheduler_with_warmup
 
 
